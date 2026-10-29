@@ -6,7 +6,7 @@ Current status: **Not started; awaiting explicit request and approval**
 | Phase | Status |
 |---|---|
 | 00 — Source and rights | Not started |
-| 01 — Flask foundation | Not started |
+| 01 — Flask foundation | Complete (written; verification not run) |
 | 02 — Catalog and content | Not started |
 | 03 — Reader UI | Not started |
 | 04 — Resume and bookmarks | Not started |

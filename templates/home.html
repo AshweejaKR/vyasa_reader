@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% macro entries(items) %}
+  {% if items %}
+  <ul class="list">
+    {% for item in items %}
+    <li>
+      <a href="{{ item.source_url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a>
+      <small>Opens on VyasaOnline</small>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="empty">Nothing here yet.</p>
+  {% endif %}
+{% endmacro %}
+{% block content %}
+{% if error %}<p class="notice" role="alert">{{ error }}</p>{% endif %}
+
+<section aria-labelledby="continue">
+  <h2 id="continue">Continue Reading</h2>
+  <p class="empty">Nothing yet. Your last story will appear here.</p>
+</section>
+
+<section id="stories" aria-labelledby="stories-h">
+  <h2 id="stories-h">Stories</h2>
+  {{ entries(stories) }}
+</section>
+
+<section id="parvas" aria-labelledby="parvas-h">
+  <h2 id="parvas-h">Parvas</h2>
+  {{ entries(parvas) }}
+</section>
+{% endblock %}

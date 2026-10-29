@@ -1,6 +1,6 @@
 # Vyasa Reader
 
-**Status:** Planning only — no live app yet.
+**Status:** Phase 01 foundation written (link-only catalog, no story text); not yet run.
 
 Small, independent Kannada Mahabharata reader for **Android and PC**, intended to run on an AWS EC2 instance. Goal: comfortable reading and resume from where you stopped.
 
@@ -18,6 +18,22 @@ Small, independent Kannada Mahabharata reader for **Android and PC**, intended t
 - Browser `localStorage` for saved position, bookmarks, and display settings.
 - HTTPS Progressive Web App (PWA); Nginx + Gunicorn + systemd on Amazon Linux EC2.
 - No automated bulk scraping or unauthorized copying of translations.
+
+## Run locally (Phase 01; not run / not verified)
+
+```
+python -m venv .venv
+.venv\Scripts\activate          # Windows; on Linux/macOS: source .venv/bin/activate
+pip install -r requirements.txt
+python app.py
+```
+
+Smoke check, with the app running on http://127.0.0.1:5000:
+
+1. `/` shows "Vyasa Reader", Stories and Parvas navigation, an empty Continue Reading state, and Kannada titles.
+2. Each listed title opens its VyasaOnline page in a new tab.
+3. `/health` returns `{"status":"ok"}`.
+4. `/anything-else` shows the "Page not found" page with a 404 status.
 
 ## Project documents
 

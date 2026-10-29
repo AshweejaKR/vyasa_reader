@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="kn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Vyasa Reader{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header>
+    <h1><a href="{{ url_for('home') }}">ವ್ಯಾಸ ರೀಡರ್ <span>Vyasa Reader</span></a></h1>
+    <p>An independent Kannada Mahabharata reader. Not an official VyasaOnline app.</p>
+    <nav aria-label="Main">
+      <a href="{{ url_for('home') }}#stories">Stories</a>
+      <a href="{{ url_for('home') }}#parvas">Parvas</a>
+    </nav>
+  </header>
+  <main id="main">{% block content %}{% endblock %}</main>
+  <footer>Story text belongs to its original source; entries here link to the original site.</footer>
+</body>
+</html>
