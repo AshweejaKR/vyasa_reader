@@ -12,8 +12,8 @@
     <h1><a href="{{ url_for('home') }}">ವ್ಯಾಸ ರೀಡರ್ <span>Vyasa Reader</span></a></h1>
     <p>An independent Kannada Mahabharata reader. Not an official VyasaOnline app.</p>
     <nav aria-label="Main">
-      <a href="{{ url_for('home') }}#stories">Stories</a>
-      <a href="{{ url_for('home') }}#parvas">Parvas</a>
+      <a href="{{ url_for('stories') }}">Stories</a>
+      <a href="{{ url_for('parvas') }}">Parvas</a>
     </nav>
   </header>
   <main id="main">{% block content %}{% endblock %}</main>

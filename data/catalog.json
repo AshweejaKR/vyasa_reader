@@ -1,10 +1,22 @@
 [
   {
+    "id": "demo-story",
+    "title": "ಬೆಳಕಿನ ಹಾದಿ (ಡೆಮೊ)",
+    "collection": "stories",
+    "sort_order": 1,
+    "source_url": "",
+    "source_name": "Vyasa Reader (original demo text)",
+    "author": "Vyasa Reader project",
+    "content_status": "approved",
+    "content_path": "demo-story.json"
+  },
+  {
     "id": "aruni-uddalaka",
     "title": "ಆರುಣಿ ಉದ್ಧಾಲಕ",
     "collection": "stories",
-    "sort_order": 1,
+    "sort_order": 2,
     "source_url": "https://www.vyasaonline.com/2018/10/27/%E0%B2%86%E0%B2%B0%E0%B3%81%E0%B2%A3%E0%B2%BF-%E0%B2%89%E0%B2%A6%E0%B3%8D%E0%B2%A7%E0%B2%BE%E0%B2%B2%E0%B2%95/mahabharata/",
+    "source_name": "VyasaOnline",
     "content_status": "link_only",
     "content_path": null
   },
@@ -12,8 +24,9 @@
     "id": "stories-index",
     "title": "ಮಹಾಭಾರತದ ಕಥೆಗಳು",
     "collection": "stories",
-    "sort_order": 2,
+    "sort_order": 3,
     "source_url": "https://www.vyasaonline.com/stories-in-mahabharata-kannada/",
+    "source_name": "VyasaOnline",
     "content_status": "link_only",
     "content_path": null
   },
@@ -23,6 +36,7 @@
     "collection": "parvas",
     "sort_order": 1,
     "source_url": "https://www.vyasaonline.com/translations10/",
+    "source_name": "VyasaOnline",
     "content_status": "link_only",
     "content_path": null
   }

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% from "_items.html" import entries %}
+{% block title %}{{ heading }} - Vyasa Reader{% endblock %}
+{% block content %}
+{% if error %}<p class="notice" role="alert">{{ error }}</p>{% endif %}
+<section aria-labelledby="list-h">
+  <h2 id="list-h">{{ heading }}</h2>
+  {{ entries(items) }}
+</section>
+{% endblock %}

@@ -1,6 +1,6 @@
 # Vyasa Reader
 
-**Status:** Phase 01 foundation written (link-only catalog, no story text); not yet run.
+**Status:** Phases 00-02 written (link-only catalog plus a fictional in-app demo story); not yet run.
 
 Small, independent Kannada Mahabharata reader for **Android and PC**, intended to run on an AWS EC2 instance. Goal: comfortable reading and resume from where you stopped.
 
@@ -19,7 +19,7 @@ Small, independent Kannada Mahabharata reader for **Android and PC**, intended t
 - HTTPS Progressive Web App (PWA); Nginx + Gunicorn + systemd on Amazon Linux EC2.
 - No automated bulk scraping or unauthorized copying of translations.
 
-## Run locally (Phase 01; not run / not verified)
+## Run locally (not run / not verified)
 
 ```
 python -m venv .venv
@@ -31,9 +31,16 @@ python app.py
 Smoke check, with the app running on http://127.0.0.1:5000:
 
 1. `/` shows "Vyasa Reader", Stories and Parvas navigation, an empty Continue Reading state, and Kannada titles.
-2. Each listed title opens its VyasaOnline page in a new tab.
-3. `/health` returns `{"status":"ok"}`.
-4. `/anything-else` shows the "Page not found" page with a 404 status.
+2. `/stories` and `/parvas` list their entries in order.
+3. The demo story opens at `/read/demo-story` with its demo notice, credit, and Next link. It is fictional text written for testing.
+4. A link-only title opens `/read/<id>` with an **Open Original** button; the original opens only when you click it.
+5. `/health` returns `{"status":"ok"}`.
+6. `/anything-else` and `/read/unknown` show the "Page not found" page with a 404 status.
+
+## Content rules (Phase 02)
+
+- `content_status` is `link_only` or `approved`. `approved` items load a JSON file from `data/content/` (blocks of `heading`, `paragraph`, `verse`, each with a stable `id`).
+- Only the fictional demo is `approved`. No explicit permission to host VyasaOnline translations is recorded in `docs/CONTENT_ACCESS_DECISION.md`, so there is no importer or fetcher.
 
 ## Project documents
 

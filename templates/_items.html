@@ -1,0 +1,14 @@
+{% macro entries(items) %}
+  {% if items %}
+  <ul class="list">
+    {% for item in items %}
+    <li>
+      <a href="{{ url_for('read', item_id=item.id) }}">{{ item.title }}</a>
+      <small>{% if item.content_status == 'approved' %}Read in app{% else %}Link to original on {{ item.source_name or 'source site' }}{% endif %}</small>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="empty">Nothing here yet.</p>
+  {% endif %}
+{% endmacro %}

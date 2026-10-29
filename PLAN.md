@@ -1,6 +1,6 @@
 # PLAN.md — Vyasa Reader
 
-**Status:** Phase 00 decision documented (`link_only`; reuse rights not verified). Phase 01 foundation source written; runtime not verified. Phase 01 was implemented before Phase 00; the sequence is now reconciled. Next: Phase 02.  **Phases:** 00–06.  **Priority:** Simple, comfortable reading.
+**Status:** Phase 00 decision documented (`link_only`; reuse rights not verified). Phase 01 foundation source written; runtime not verified. Phase 01 was implemented before Phase 00; the sequence is now reconciled. Phase 02 catalog and content boundary written (runtime not verified). Next: Phase 03.  **Phases:** 00–06.  **Priority:** Simple, comfortable reading.
 
 ## Goal
 

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}{{ item.title }} - Vyasa Reader{% endblock %}
+{% block content %}
+<article>
+  <h2>{{ item.title }}</h2>
+  <p class="credit">
+    Source: {{ item.source_name or 'Unknown' }}{% if item.author %} &middot; Author: {{ item.author }}{% endif %}
+    {% if item.source_url %}&middot; <a href="{{ item.source_url }}" target="_blank" rel="noopener noreferrer">Original</a>{% endif %}
+  </p>
+
+  {% if item.content_status == 'approved' and content %}
+    {% if content.demo %}<p class="notice">Demo: fictional text written for testing the reader. It is not part of the Mahabharata.</p>{% endif %}
+    {% for block in content.blocks %}
+      {% if block.type == 'heading' %}<h3 id="{{ block.id }}">{{ block.text }}</h3>
+      {% elif block.type == 'verse' %}<p id="{{ block.id }}" class="verse">{{ block.text }}</p>
+      {% else %}<p id="{{ block.id }}">{{ block.text }}</p>{% endif %}
+    {% endfor %}
+  {% elif item.content_status == 'approved' %}
+    <p class="notice" role="alert">This text is not available right now.</p>
+  {% else %}
+    <p>This item is not shown in the app. Read it on the original site.</p>
+  {% endif %}
+
+  {% if item.source_url and not content %}
+    <p><a class="button" href="{{ item.source_url }}" target="_blank" rel="noopener noreferrer">Open Original</a></p>
+  {% endif %}
+</article>
+
+<nav class="pager" aria-label="Previous and next">
+  {% if prev_item %}<a href="{{ url_for('read', item_id=prev_item.id) }}">&larr; {{ prev_item.title }}</a>{% else %}<span></span>{% endif %}
+  {% if next_item %}<a href="{{ url_for('read', item_id=next_item.id) }}">{{ next_item.title }} &rarr;</a>{% endif %}
+</nav>
+{% endblock %}

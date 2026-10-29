@@ -1,18 +1,5 @@
 {% extends "base.html" %}
-{% macro entries(items) %}
-  {% if items %}
-  <ul class="list">
-    {% for item in items %}
-    <li>
-      <a href="{{ item.source_url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a>
-      <small>Opens on VyasaOnline</small>
-    </li>
-    {% endfor %}
-  </ul>
-  {% else %}
-  <p class="empty">Nothing here yet.</p>
-  {% endif %}
-{% endmacro %}
+{% from "_items.html" import entries %}
 {% block content %}
 {% if error %}<p class="notice" role="alert">{{ error }}</p>{% endif %}
 
@@ -22,12 +9,12 @@
 </section>
 
 <section id="stories" aria-labelledby="stories-h">
-  <h2 id="stories-h">Stories</h2>
+  <h2 id="stories-h"><a href="{{ url_for('stories') }}">Stories</a></h2>
   {{ entries(stories) }}
 </section>
 
 <section id="parvas" aria-labelledby="parvas-h">
-  <h2 id="parvas-h">Parvas</h2>
+  <h2 id="parvas-h"><a href="{{ url_for('parvas') }}">Parvas</a></h2>
   {{ entries(parvas) }}
 </section>
 {% endblock %}

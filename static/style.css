@@ -20,6 +20,10 @@ h2 { font-size: 1.25rem; margin: 1.5rem 0 0.5rem; }
 .list small { display: block; color: var(--muted); font-size: 0.85rem; }
 .empty { color: var(--muted); }
 .notice { padding: 0.75rem; border: 1px solid var(--link); border-radius: 0.5rem; }
+.credit { color: var(--muted); font-size: 0.9rem; }
+.verse { white-space: pre-line; font-style: italic; padding-left: 1rem; border-left: 3px solid var(--line); }
+.button { display: inline-block; padding: 0.6rem 1.2rem; border: 2px solid var(--link); border-radius: 0.5rem; text-decoration: none; font-weight: bold; }
+.pager { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2rem; }
 footer { color: var(--muted); font-size: 0.85rem; }
 .skip { position: absolute; left: -999px; }
 .skip:focus { left: 0.5rem; top: 0.5rem; background: var(--bg); padding: 0.5rem; }
