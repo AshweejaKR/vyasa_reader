@@ -104,6 +104,8 @@ See `PLAN.md` for specific deliverables and acceptance criteria.
 
 ## Deployment notes (after Phase 06)
 
+- Runbook: `deploy/DEPLOY_EC2.md` (Amazon Linux 2023, Nginx + Gunicorn + systemd + Let's Encrypt). Config files: `deploy/vyasa-reader.service`, `deploy/nginx-vyasa-reader.conf`. Not run / not verified.
+
 - For Android installation, provide a trusted **HTTPS hostname**. A bare HTTP EC2 public IP is generally insufficient for PWA installation.
 - Keep Gunicorn on loopback, expose only Nginx's public web ports, and restrict SSH access.
 - Do not expose Flask debug mode, private credentials, or unauthorized translated content.

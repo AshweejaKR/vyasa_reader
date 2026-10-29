@@ -1,5 +1,11 @@
 # Development Log
 
+## 2026-10-29 — Phase 06: EC2 deployment docs
+- Summary: Runbook for an existing Amazon Linux EC2 instance: read-only AMI/arch/Python checks (AL2023 path; AL2 flagged as unsupported because its Python 3.7 is too old), Elastic IP and DNS, Security Group (443/80 public, 22 from owner IP, 8000 never public), non-root `vyasa` user and venv, Gunicorn on `127.0.0.1:8000` under systemd, Nginx HTTPS proxy with HTTP redirect, Let's Encrypt via Certbot (dnf or official pip method) with renewal timer, SELinux note, logs, update and rollback, cost factors without amounts, and user-run verification (HTTPS, port 8000 closed, reboot, logs, storage, Android install/resume/offline). No commands run; no AWS changes.
+- Added: `deploy/DEPLOY_EC2.md`, `deploy/vyasa-reader.service`, `deploy/nginx-vyasa-reader.conf`
+- Modified: `README.md`, `docs/PROGRESS.md`, `docs/DEVELOPMENT_LOG.md`
+- Verification: not run
+
 ## 2026-10-29 — Phase 05: PWA
 - Summary: Manifest (standalone, scope/start_url `/`, theme and background colors), head tags, and a self-made SVG icon. `/sw.js` route serves `static/sw.js` at root scope with no-cache; it precaches the app shell only, falls back to `/offline` on failed navigations, never caches pages or content, and ignores cross-origin requests. Update prompt with Reload button; cache cleanup on activate. `/offline` page and `docs/PWA.md` (install, localhost/HTTPS, Nginx notes, reinstall/troubleshooting). Blocker: 192/512 PNG icons were not created (no way to write binary files without running commands); the manifest lists the SVG with `sizes: any`.
 - Added: `static/manifest.webmanifest`, `static/sw.js`, `static/icons/icon.svg`, `templates/offline.html`, `docs/PWA.md`

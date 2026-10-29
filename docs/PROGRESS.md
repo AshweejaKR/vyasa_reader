@@ -1,7 +1,7 @@
 # Phase Progress — Vyasa Reader
 
-Current phase: **06 — EC2 deployment docs (next pending)**
-Current status: **Not started; awaiting explicit request and approval**
+Current phase: **All planned phases (00–06) written**
+Current status: **Runtime and deployment not verified; awaiting next instruction**
 
 Note: Phase 01 was implemented before Phase 00; the sequence is now reconciled. Phase 00 decision is `link_only`; reuse rights are not verified.
 
@@ -13,6 +13,6 @@ Note: Phase 01 was implemented before Phase 00; the sequence is now reconciled. 
 | 03 — Reader UI | Complete (written; verification not run) |
 | 04 — Resume and bookmarks | Complete (written; verification not run) |
 | 05 — PWA | Complete (written; verification not run; SVG icon only, PNG icons not generated) |
-| 06 — EC2 deployment docs | Not started |
+| 06 — EC2 deployment docs | Complete (runbook and config written; not deployed; verification not run) |
 
 Rules: Change only the requested phase after approval. Mark complete only after its deliverables are written. Record runtime verification separately; never assume commands or tests were run. Update `docs/DEVELOPMENT_LOG.md` after each completed implementation task.
