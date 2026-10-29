@@ -1,9 +1,11 @@
 :root { color-scheme: light dark; --bg: #fffdf8; --fg: #1f1b16; --muted: #5c554b; --link: #8a2a00; --line: #d9d0c1; }
 @media (prefers-color-scheme: dark) {
-  :root { --bg: #17140f; --fg: #f2ece0; --muted: #b5ad9e; --link: #ffb27a; --line: #3a342a; }
+  :root:not([data-theme="light"]) { --bg: #17140f; --fg: #f2ece0; --muted: #b5ad9e; --link: #ffb27a; --line: #3a342a; }
 }
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; --bg: #17140f; --fg: #f2ece0; --muted: #b5ad9e; --link: #ffb27a; --line: #3a342a; }
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--fg); font: 1.125rem/1.7 "Noto Sans Kannada", "Nirmala UI", system-ui, sans-serif; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 1.125rem/1.7 "Noto Sans Kannada", "Nirmala UI", "Tunga", system-ui, sans-serif; overflow-wrap: anywhere; }
 header, main, footer { max-width: 40rem; margin: 0 auto; padding: 1rem; }
 header { border-bottom: 1px solid var(--line); }
 h1 { margin: 0; font-size: 1.5rem; }
@@ -23,6 +25,13 @@ h2 { font-size: 1.25rem; margin: 1.5rem 0 0.5rem; }
 .credit { color: var(--muted); font-size: 0.9rem; }
 .verse { white-space: pre-line; font-style: italic; padding-left: 1rem; border-left: 3px solid var(--line); }
 .button { display: inline-block; padding: 0.6rem 1.2rem; border: 2px solid var(--link); border-radius: 0.5rem; text-decoration: none; font-weight: bold; }
+.tools { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.75rem 0; }
+.tools button, .tools a { min-width: 44px; min-height: 44px; padding: 0.4rem 0.9rem; display: inline-flex; align-items: center; justify-content: center; font: inherit; font-size: 1rem; color: var(--fg); background: transparent; border: 2px solid var(--fg); border-radius: 0.5rem; text-decoration: none; cursor: pointer; }
+.tools button:disabled { opacity: 0.4; cursor: default; }
+.tools button:focus-visible, .tools a:focus-visible { outline: 3px solid var(--link); outline-offset: 2px; }
+.reader { max-width: 68ch; margin: 0 auto; font-size: var(--reader-size, 1.125rem); line-height: 1.9; }
+.reader p { margin: 0 0 1.25rem; }
+.reader h3 { font-size: 1.35em; line-height: 1.4; margin: 1.5rem 0 1rem; }
 .pager { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2rem; }
 footer { color: var(--muted); font-size: 0.85rem; }
 .skip { position: absolute; left: -999px; }

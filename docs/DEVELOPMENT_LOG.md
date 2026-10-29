@@ -1,5 +1,11 @@
 # Development Log
 
+## 2026-10-29 — Phase 03: Reader UI
+- Summary: Reader column (68ch, rem-based size, generous spacing), Kannada font stack with system fallbacks (no bundled fonts), A-/A+ and light/dark controls saved in versioned localStorage keys, Back to library link. Controls appear only for in-app (approved) content; link-only items show no text. Theme script loads in the head to avoid a flash.
+- Added: `static/reader.js`
+- Modified: `static/style.css`, `templates/read.html`, `templates/base.html`, `README.md`, `PLAN.md`, `docs/PROGRESS.md`, `docs/DEVELOPMENT_LOG.md`
+- Verification: not run
+
 ## 2026-10-29 — Phase 02: Catalog and allowed content
 - Summary: Added `/stories`, `/parvas`, and `/read/<item_id>`. `link_only` items show credit and an Open Original button (no auto-redirect); `approved` items load a JSON block file confined to `data/content/`, rendered escaped. Previous/Next within a collection. One fictional, self-written demo story added. No importer or fetcher, since no permission is recorded.
 - Added: `data/content/demo-story.json`, `templates/list.html`, `templates/read.html`, `templates/_items.html`

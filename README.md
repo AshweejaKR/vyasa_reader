@@ -1,6 +1,6 @@
 # Vyasa Reader
 
-**Status:** Phases 00-02 written (link-only catalog plus a fictional in-app demo story); not yet run.
+**Status:** Phases 00-03 written (link-only catalog plus a fictional in-app demo story); not yet run.
 
 Small, independent Kannada Mahabharata reader for **Android and PC**, intended to run on an AWS EC2 instance. Goal: comfortable reading and resume from where you stopped.
 
@@ -36,6 +36,16 @@ Smoke check, with the app running on http://127.0.0.1:5000:
 4. A link-only title opens `/read/<id>` with an **Open Original** button; the original opens only when you click it.
 5. `/health` returns `{"status":"ok"}`.
 6. `/anything-else` and `/read/unknown` show the "Page not found" page with a 404 status.
+
+## Reader manual checks (Phase 03; not run / not verified)
+
+Open `/read/demo-story` at about 360 px, 412 px, and desktop width (browser dev tools device mode, plus a real Android phone if available):
+
+1. Text is legible; the column is narrow with generous line and paragraph spacing; no horizontal scrolling.
+2. A- and A+ change text size and disable at the limits; Dark/Light mode switches the theme.
+3. Refresh the page: size and theme are kept (`vyasa.v1.fontStep`, `vyasa.v1.theme` in localStorage).
+4. Tab through Back to library, A-, A+, theme toggle, and Previous/Next; focus is visible.
+5. The verse keeps its line break. A link-only item (`/read/aruni-uddalaka`) shows no story text and no reader controls.
 
 ## Content rules (Phase 02)
 
