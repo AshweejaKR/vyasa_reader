@@ -1,11 +1,13 @@
 # Phase Progress — Vyasa Reader
 
-Current phase: **00 — Source feasibility and rights**
+Current phase: **02 — Catalog and content (next pending)**
 Current status: **Not started; awaiting explicit request and approval**
+
+Note: Phase 01 was implemented before Phase 00; the sequence is now reconciled. Phase 00 decision is `link_only`; reuse rights are not verified.
 
 | Phase | Status |
 |---|---|
-| 00 — Source and rights | Not started |
+| 00 — Source and rights | Complete (decision doc written: `link_only`; rights unverified, permission not yet requested or received) |
 | 01 — Flask foundation | Complete (written; verification not run) |
 | 02 — Catalog and content | Not started |
 | 03 — Reader UI | Not started |

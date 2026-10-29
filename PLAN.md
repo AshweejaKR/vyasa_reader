@@ -1,6 +1,6 @@
 # PLAN.md — Vyasa Reader
 
-**Status:** Planning; app not implemented.  **Phases:** 00–06.  **Priority:** Simple, comfortable reading.
+**Status:** Phase 00 decision documented (`link_only`; reuse rights not verified). Phase 01 foundation source written; runtime not verified. Phase 01 was implemented before Phase 00; the sequence is now reconciled. Next: Phase 02.  **Phases:** 00–06.  **Priority:** Simple, comfortable reading.
 
 ## Goal
 
