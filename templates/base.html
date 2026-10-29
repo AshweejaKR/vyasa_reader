@@ -6,6 +6,7 @@
   <title>{% block title %}Vyasa Reader{% endblock %}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   {% block head_extra %}{% endblock %}
+  <script src="{{ url_for('static', filename='resume.js') }}" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>

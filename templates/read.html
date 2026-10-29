@@ -15,12 +15,13 @@
     <button type="button" id="font-dec" aria-label="Smaller text">A&minus;</button>
     <button type="button" id="font-inc" aria-label="Larger text">A+</button>
     <button type="button" id="theme-toggle" aria-label="Switch between light and dark mode">Dark mode</button>
+    <button type="button" id="bookmark">Bookmark this spot</button>
     {% endif %}
   </div>
 
   {% if item.content_status == 'approved' and content %}
     {% if content.demo %}<p class="notice">Demo: fictional text written for testing the reader. It is not part of the Mahabharata.</p>{% endif %}
-    <div class="reader" lang="kn">
+    <div class="reader" lang="kn" data-item="{{ item.id }}">
     {% for block in content.blocks %}
       {% if block.type == 'heading' %}<h3 id="{{ block.id }}">{{ block.text }}</h3>
       {% elif block.type == 'verse' %}<p id="{{ block.id }}" class="verse">{{ block.text }}</p>
@@ -31,6 +32,7 @@
     <p class="notice" role="alert">This text is not available right now.</p>
   {% else %}
     <p>This item is not shown in the app. Read it on the original site.</p>
+    <p class="notice">Your reading position is not saved for this item. The app cannot track where you stop on the original website.</p>
   {% endif %}
 
   {% if item.source_url and not content %}

@@ -1,5 +1,11 @@
 # Development Log
 
+## 2026-10-29 — Phase 04: Resume and bookmarks
+- Summary: Versioned `vyasa.v1.state` localStorage schema keyed by catalog id and block id (offset ratio, timestamp, per-item positions, bookmarks, auto-resume flag); malformed or old values are discarded or clamped. Debounced scroll save plus flush on visibilitychange, pagehide and link clicks. Restore after `document.fonts.ready`; font changes keep the nearest paragraph. Home auto-redirects only on a fresh session with no same-origin referrer, and only to an item still in the approved catalog; an Auto-resume toggle, Continue Reading button, bookmark list and storage-limits note were added. Link-only items show a no-tracking notice. Demo story extended with more self-written fictional text for testing.
+- Added: `static/resume.js`
+- Modified: `app.py`, `static/reader.js`, `static/style.css`, `templates/base.html`, `templates/home.html`, `templates/read.html`, `data/content/demo-story.json`, `README.md`, `PLAN.md`, `docs/PROGRESS.md`, `docs/DEVELOPMENT_LOG.md`
+- Verification: not run
+
 ## 2026-10-29 — Phase 03: Reader UI
 - Summary: Reader column (68ch, rem-based size, generous spacing), Kannada font stack with system fallbacks (no bundled fonts), A-/A+ and light/dark controls saved in versioned localStorage keys, Back to library link. Controls appear only for in-app (approved) content; link-only items show no text. Theme script loads in the head to avoid a flash.
 - Added: `static/reader.js`

@@ -66,7 +66,8 @@ def home():
     items, error = load_catalog()
     stories = [i for i in items if i["collection"] == "stories"]
     parvas = [i for i in items if i["collection"] == "parvas"]
-    return render_template("home.html", stories=stories, parvas=parvas, error=error)
+    approved = {i["id"]: i["title"] for i in items if i["content_status"] == "approved"}
+    return render_template("home.html", stories=stories, parvas=parvas, approved=approved, error=error)
 
 
 @app.route("/stories")

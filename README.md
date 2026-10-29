@@ -1,6 +1,6 @@
 # Vyasa Reader
 
-**Status:** Phases 00-03 written (link-only catalog plus a fictional in-app demo story); not yet run.
+**Status:** Phases 00-04 written (link-only catalog plus a fictional in-app demo story); not yet run.
 
 Small, independent Kannada Mahabharata reader for **Android and PC**, intended to run on an AWS EC2 instance. Goal: comfortable reading and resume from where you stopped.
 
@@ -46,6 +46,20 @@ Open `/read/demo-story` at about 360 px, 412 px, and desktop width (browser dev 
 3. Refresh the page: size and theme are kept (`vyasa.v1.fontStep`, `vyasa.v1.theme` in localStorage).
 4. Tab through Back to library, A-, A+, theme toggle, and Previous/Next; focus is visible.
 5. The verse keeps its line break. A link-only item (`/read/aruni-uddalaka`) shows no story text and no reader controls.
+
+## Resume and bookmarks manual checks (Phase 04; not run / not verified)
+
+State is one versioned localStorage key, `vyasa.v1.state` (last item, block anchor, offset ratio, time, per-item positions, bookmarks, auto-resume flag). A "fresh launch" is a new browser session (no `vyasa.v1.session` in sessionStorage) that did not come from another page of this site. Until Phase 05, opening `/` in a new tab counts as a fresh launch.
+
+1. Open `/read/demo-story`, scroll mid-way, close the tab/browser, open `/` again: it redirects to the demo near the same paragraph.
+2. Refresh, A-/A+, theme change: the nearest paragraph stays in view.
+3. Click the site title or Stories/Parvas, then Home: no redirect. Previous/Next and explicit links always open the chosen item.
+4. Turn Auto-resume off on Home: a fresh launch shows the Continue Reading button instead.
+5. Bookmark this spot, then open it from the Home bookmark list; Remove deletes it.
+6. Set `vyasa.v1.state` to `{bad` or `[]`, or to a deleted item id: pages load normally with no redirect.
+7. Link-only items show a notice that their position is not saved.
+
+Limits: positions and bookmarks live only in this browser on this device. Clearing site data, private/incognito mode, or another phone/browser loses them.
 
 ## Content rules (Phase 02)
 

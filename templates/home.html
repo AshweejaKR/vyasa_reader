@@ -5,7 +5,15 @@
 
 <section aria-labelledby="continue">
   <h2 id="continue">Continue Reading</h2>
-  <p class="empty">Nothing yet. Your last story will appear here.</p>
+  <div id="resume" data-items='{{ approved|tojson }}'>
+    <p class="empty" id="resume-empty">Nothing yet. Your last story will appear here.</p>
+    <p id="resume-go" hidden><a class="button" href="{{ url_for('home') }}">Continue Reading: <span></span></a></p>
+  </div>
+  <label class="setting"><input type="checkbox" id="auto-resume" checked> Auto-resume last story when the app opens</label>
+  <h3>Bookmarks</h3>
+  <ul class="list" id="bookmarks"></ul>
+  <p class="empty" id="bookmarks-empty">No bookmarks yet.</p>
+  <p class="credit">Reading position and bookmarks are saved only in this browser on this device. Clearing site data, private/incognito mode, or another phone or browser will not have them. Positions inside VyasaOnline pages cannot be saved.</p>
 </section>
 
 <section id="stories" aria-labelledby="stories-h">

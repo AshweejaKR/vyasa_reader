@@ -1,6 +1,6 @@
 # Phase Progress — Vyasa Reader
 
-Current phase: **04 — Resume and bookmarks (next pending)**
+Current phase: **05 — PWA (next pending)**
 Current status: **Not started; awaiting explicit request and approval**
 
 Note: Phase 01 was implemented before Phase 00; the sequence is now reconciled. Phase 00 decision is `link_only`; reuse rights are not verified.
@@ -11,7 +11,7 @@ Note: Phase 01 was implemented before Phase 00; the sequence is now reconciled. 
 | 01 — Flask foundation | Complete (written; verification not run) |
 | 02 — Catalog and content | Complete (written; verification not run) |
 | 03 — Reader UI | Complete (written; verification not run) |
-| 04 — Resume and bookmarks | Not started |
+| 04 — Resume and bookmarks | Complete (written; verification not run) |
 | 05 — PWA | Not started |
 | 06 — EC2 deployment docs | Not started |
 

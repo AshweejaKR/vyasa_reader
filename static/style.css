@@ -32,6 +32,9 @@ h2 { font-size: 1.25rem; margin: 1.5rem 0 0.5rem; }
 .reader { max-width: 68ch; margin: 0 auto; font-size: var(--reader-size, 1.125rem); line-height: 1.9; }
 .reader p { margin: 0 0 1.25rem; }
 .reader h3 { font-size: 1.35em; line-height: 1.4; margin: 1.5rem 0 1rem; }
+.setting { display: flex; align-items: center; gap: 0.5rem; min-height: 44px; margin: 0.75rem 0; }
+.setting input { width: 1.25rem; height: 1.25rem; }
+#bookmarks button { margin-top: 0.25rem; min-height: 44px; padding: 0.3rem 0.9rem; font: inherit; font-size: 0.9rem; color: var(--fg); background: transparent; border: 1px solid var(--line); border-radius: 0.5rem; cursor: pointer; }
 .pager { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2rem; }
 footer { color: var(--muted); font-size: 0.85rem; }
 .skip { position: absolute; left: -999px; }

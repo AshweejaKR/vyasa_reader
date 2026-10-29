@@ -37,8 +37,16 @@
       themeBtn.textContent = currentTheme() === "dark" ? "Light mode" : "Dark mode";
     }
 
-    dec.addEventListener("click", function () { step -= 1; set(KEY_SIZE, step); showSize(); });
-    inc.addEventListener("click", function () { step += 1; set(KEY_SIZE, step); showSize(); });
+    function resize(delta) {
+      document.dispatchEvent(new Event("vyasa:beforefont"));
+      step += delta;
+      set(KEY_SIZE, step);
+      showSize();
+      document.dispatchEvent(new Event("vyasa:afterfont"));
+    }
+
+    dec.addEventListener("click", function () { resize(-1); });
+    inc.addEventListener("click", function () { resize(1); });
     themeBtn.addEventListener("click", function () {
       var next = currentTheme() === "dark" ? "light" : "dark";
       root.setAttribute("data-theme", next);
