@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Offline - Vyasa Reader{% endblock %}
+{% block content %}
+<section>
+  <h2>You are offline</h2>
+  <p>This page needs a connection. Stories and Parvas are not stored for offline use. Reconnect and try again.</p>
+  <p><a class="button" href="{{ url_for('home') }}">Try again</a></p>
+</section>
+{% endblock %}

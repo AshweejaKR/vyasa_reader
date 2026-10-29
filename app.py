@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from flask import Flask, abort, render_template
+from flask import Flask, abort, render_template, send_from_directory
 
 BASE_DIR = Path(__file__).resolve().parent
 CATALOG_PATH = BASE_DIR / "data" / "catalog.json"
@@ -98,6 +98,18 @@ def read(item_id):
     return render_template(
         "read.html", item=current, content=content, prev_item=prev_item, next_item=next_item
     )
+
+
+@app.route("/sw.js")
+def service_worker():
+    response = send_from_directory(app.static_folder, "sw.js", mimetype="text/javascript")
+    response.headers["Cache-Control"] = "no-cache"
+    return response
+
+
+@app.route("/offline")
+def offline():
+    return render_template("offline.html")
 
 
 @app.route("/health")

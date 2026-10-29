@@ -1,0 +1,14 @@
+{
+  "name": "Vyasa Reader",
+  "short_name": "Vyasa",
+  "description": "An independent Kannada Mahabharata reader.",
+  "lang": "kn",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#8a2a00",
+  "background_color": "#fffdf8",
+  "icons": [
+    { "src": "/static/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

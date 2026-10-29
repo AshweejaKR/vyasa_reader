@@ -39,3 +39,6 @@ h2 { font-size: 1.25rem; margin: 1.5rem 0 0.5rem; }
 footer { color: var(--muted); font-size: 0.85rem; }
 .skip { position: absolute; left: -999px; }
 .skip:focus { left: 0.5rem; top: 0.5rem; background: var(--bg); padding: 0.5rem; }
+
+.update { position: fixed; left: 0; right: 0; bottom: 0; padding: 0.75rem 1rem; background: var(--bg); border-top: 2px solid var(--link); text-align: center; }
+.update button { min-height: 44px; padding: 0.4rem 0.9rem; font: inherit; color: var(--fg); background: transparent; border: 2px solid var(--fg); border-radius: 0.5rem; }

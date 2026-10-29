@@ -1,6 +1,6 @@
 # Vyasa Reader
 
-**Status:** Phases 00-04 written (link-only catalog plus a fictional in-app demo story); not yet run.
+**Status:** Phases 00-05 written (link-only catalog plus a fictional in-app demo story); not yet run.
 
 Small, independent Kannada Mahabharata reader for **Android and PC**, intended to run on an AWS EC2 instance. Goal: comfortable reading and resume from where you stopped.
 
@@ -49,7 +49,7 @@ Open `/read/demo-story` at about 360 px, 412 px, and desktop width (browser dev 
 
 ## Resume and bookmarks manual checks (Phase 04; not run / not verified)
 
-State is one versioned localStorage key, `vyasa.v1.state` (last item, block anchor, offset ratio, time, per-item positions, bookmarks, auto-resume flag). A "fresh launch" is a new browser session (no `vyasa.v1.session` in sessionStorage) that did not come from another page of this site. Until Phase 05, opening `/` in a new tab counts as a fresh launch.
+State is one versioned localStorage key, `vyasa.v1.state` (last item, block anchor, offset ratio, time, per-item positions, bookmarks, auto-resume flag). A "fresh launch" is a new browser session (no `vyasa.v1.session` in sessionStorage) that did not come from another page of this site. Opening `/` in a new tab counts as a fresh launch.
 
 1. Open `/read/demo-story`, scroll mid-way, close the tab/browser, open `/` again: it redirects to the demo near the same paragraph.
 2. Refresh, A-/A+, theme change: the nearest paragraph stays in view.
@@ -75,6 +75,7 @@ Limits: positions and bookmarks live only in this browser on this device. Cleari
 | `docs/PROGRESS.md` | **Required by `CLAUDE.md`** to know which phase is pending or complete |
 | `SOURCES_AND_RIGHTS.md` | Original website links and permission questions |
 | `prompts/PHASE_XX_*.md` | Existing phase-specific Claude Code instructions |
+| `docs/PWA.md` | PWA install, caching scope, and troubleshooting |
 | `docs/DEVELOPMENT_LOG.md` | Create/update when phase work is completed; newest entry first |
 
 Avoid extra index/reference files unless project complexity actually requires them.

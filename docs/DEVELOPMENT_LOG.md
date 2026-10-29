@@ -1,5 +1,11 @@
 # Development Log
 
+## 2026-10-29 — Phase 05: PWA
+- Summary: Manifest (standalone, scope/start_url `/`, theme and background colors), head tags, and a self-made SVG icon. `/sw.js` route serves `static/sw.js` at root scope with no-cache; it precaches the app shell only, falls back to `/offline` on failed navigations, never caches pages or content, and ignores cross-origin requests. Update prompt with Reload button; cache cleanup on activate. `/offline` page and `docs/PWA.md` (install, localhost/HTTPS, Nginx notes, reinstall/troubleshooting). Blocker: 192/512 PNG icons were not created (no way to write binary files without running commands); the manifest lists the SVG with `sizes: any`.
+- Added: `static/manifest.webmanifest`, `static/sw.js`, `static/icons/icon.svg`, `templates/offline.html`, `docs/PWA.md`
+- Modified: `app.py`, `templates/base.html`, `static/resume.js`, `static/style.css`, `README.md`, `docs/PROGRESS.md`, `docs/DEVELOPMENT_LOG.md`
+- Verification: not run
+
 ## 2026-10-29 — Phase 04: Resume and bookmarks
 - Summary: Versioned `vyasa.v1.state` localStorage schema keyed by catalog id and block id (offset ratio, timestamp, per-item positions, bookmarks, auto-resume flag); malformed or old values are discarded or clamped. Debounced scroll save plus flush on visibilitychange, pagehide and link clicks. Restore after `document.fonts.ready`; font changes keep the nearest paragraph. Home auto-redirects only on a fresh session with no same-origin referrer, and only to an item still in the approved catalog; an Auto-resume toggle, Continue Reading button, bookmark list and storage-limits note were added. Link-only items show a no-tracking notice. Demo story extended with more self-written fictional text for testing.
 - Added: `static/resume.js`

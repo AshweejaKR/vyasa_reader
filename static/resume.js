@@ -163,6 +163,34 @@
     showBookmarks(document.getElementById("bookmarks"), document.getElementById("bookmarks-empty"), titles);
   }
 
+  function offerUpdate(worker) {
+    var bar = document.createElement("div");
+    bar.className = "update";
+    bar.textContent = "A new version is available. ";
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.textContent = "Reload";
+    btn.addEventListener("click", function () { worker.postMessage("skipWaiting"); });
+    bar.appendChild(btn);
+    document.body.appendChild(bar);
+  }
+
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("/sw.js", { scope: "/" }).then(function (reg) {
+        if (reg.waiting && navigator.serviceWorker.controller) offerUpdate(reg.waiting);
+        reg.addEventListener("updatefound", function () {
+          var w = reg.installing;
+          if (w) w.addEventListener("statechange", function () {
+            if (w.state === "installed" && navigator.serviceWorker.controller) offerUpdate(w);
+          });
+        });
+      }).catch(function () {});
+    });
+    var hadController = !!navigator.serviceWorker.controller;
+    navigator.serviceWorker.addEventListener("controllerchange", function () { if (hadController) location.reload(); });
+  }
+
   var box = document.querySelector(".reader[data-item]");
   if (box && ID.test(box.getAttribute("data-item"))) reader(box, box.getAttribute("data-item"));
   var resume = document.getElementById("resume");

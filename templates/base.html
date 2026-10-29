@@ -4,6 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Vyasa Reader{% endblock %}</title>
+  <meta name="theme-color" content="#8a2a00">
+  <link rel="manifest" href="{{ url_for('static', filename='manifest.webmanifest') }}">
+  <link rel="icon" href="{{ url_for('static', filename='icons/icon.svg') }}" type="image/svg+xml">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   {% block head_extra %}{% endblock %}
   <script src="{{ url_for('static', filename='resume.js') }}" defer></script>
