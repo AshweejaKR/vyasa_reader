@@ -1,5 +1,11 @@
 # Development Log
 
+## 2026-11-15 — First selected-story import preparation (feature branch)
+- Summary: Added manual one-story UTF-8 text importer with source URL, translator attribution, permission date, revision metadata, content hash, stable provisional paragraph IDs, and pending-review status. No scraping, bulk retrieval, or auto-approval. Preserved `aruni-uddalaka` as `link_only`.
+- Added: `scripts/import_selected_story.py`, `docs/FIRST_IMPORT.md`.
+- Modified: `.gitignore`, `data/catalog.json`, `docs/PROGRESS.md`, `docs/DEVELOPMENT_LOG.md`.
+- Verification: source review only; importer not run, Kannada website text not imported/reviewed, Android and EC2 not verified. Prepared on `feat/first-story-import-preparation`; main unchanged.
+
 ## 2026-11-15 — Post-merge review findings (fix/post-merge-review-2026-11)
 - Summary: Removed duplicate reader.js load, added explicit PWA icon-launch signal for resume, added 192/512 PNG icons matching the SVG, bumped shell cache to v3, made EC2 Nginx restart apply installed configuration, and corrected outdated project docs.
 - Modified: `templates/read.html`, `static/resume.js`, `static/manifest.webmanifest`, `static/sw.js`, `deploy/DEPLOY_EC2.md`, `PLAN.md`, `README.md`, `docs/PROGRESS.md`, `docs/PWA.md`, `docs/DEVELOPMENT_LOG.md`
