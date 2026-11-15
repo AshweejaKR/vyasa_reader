@@ -1,5 +1,11 @@
 # Development Log
 
+## 2026-11-15 — Website one-time story import and chapter references (feature branch)
+- Summary: Extended the existing `aruni-uddalaka` importer to support one explicit HTTPS fetch of the original VyasaOnline website story, extracting post paragraphs, ignoring HTML navigation/scripts/comments, and generating private JSON with source URL, author, content hash, chapter cross-reference and `pending` review status. Retained private UTF-8 text import as fallback. No public text or automatic approval.
+- References: https://vyasaonline.github.io/mahAbhArata/ and https://github.com/vyasaonline/mahAbhArata/tree/content (chapter `01_Adiparva/003_paushya-parva.md`), for cross-checking only; website story remains primary and permitted source.
+- Modified: `scripts/import_selected_story.py`, `docs/FIRST_IMPORT.md`, `README.md`, `PLAN.md`, `SOURCES_AND_RIGHTS.md`, `docs/CONTENT_ACCESS_DECISION.md`, `docs/PROGRESS.md`, `docs/DEVELOPMENT_LOG.md`.
+- Verification: website and GitHub source references inspected; importer execution, text extraction, textual comparison, Android/runtime/EC2 verification **not run**. `data/catalog.json` stays `link_only`; no text committed.
+
 ## 2026-11-15 — First selected-story import preparation (feature branch)
 - Summary: Added manual one-story UTF-8 text importer with source URL, translator attribution, permission date, revision metadata, content hash, stable provisional paragraph IDs, and pending-review status. No scraping, bulk retrieval, or auto-approval. Preserved `aruni-uddalaka` as `link_only`.
 - Added: `scripts/import_selected_story.py`, `docs/FIRST_IMPORT.md`.

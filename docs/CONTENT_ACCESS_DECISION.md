@@ -12,6 +12,12 @@ Written permission: BM Ramesh replied on 2026-11-10 to the 2026-11-04 personal, 
 - Not established: a general open-source license, unrestricted commercial distribution, rights to third-party images/illustrations/PDFs, mass scraping, or republishing to other products. Keep those excluded pending separate evidence.
 - Author requested future compatibility with revised translations, additions from other recensions, and the Shastra Samgraha series. This is a future-content request, **not** evidence that revisions are already published or a mandate for live scraping.
 
+## First-story reference policy (2026-11-15)
+
+The permitted primary text for `aruni-uddalaka` is its VyasaOnline website story. The author's public reader at https://vyasaonline.github.io/mahAbhArata/ and GitHub `content` branch at https://github.com/vyasaonline/mahAbhArata/tree/content help locate the source chapter. The corresponding Adi Parva, Paushya Parva, Chapter 3 Markdown is https://github.com/vyasaonline/mahAbhArata/blob/content/01_Adiparva/003_paushya-parva.md. This chapter contains broader text than the website story and must **not** be treated as the same version or a license to republish all GitHub files.
+
+A one-time website-only importer can generate private, review-pending JSON without changing the public catalog or uploading text to GitHub. Verify every paragraph and attribution before any private approval; retain stable reader IDs on revision.
+
 ## Safe content workflow
 
 1. Keep `link_only` as default; record each imported item’s original URL, title, translator attribution, source revision/date, import date, and local file path.

@@ -1,7 +1,7 @@
 # Phase Progress — Vyasa Reader
 
 Current phase: **All planned phases (00–06) written**
-Current status: **Permission recorded; both review fixes merged to main; selected-story manual import preparation on `feat/first-story-import-preparation` (not merged); story text import, review, runtime and deployment pending**
+Current status: **Permission recorded; first-story manual import preparation merged to main; one-time website-fetch support and GitHub/reader cross-references on `feat/vyasaonline-direct-story-import` (not merged); story text import, review, runtime and deployment still pending**
 
 Note: Phase 01 was implemented before Phase 00; the sequence is now reconciled. Phase 00 originally used `link_only`; 2026-11-10 author permission now allows the described personal-app website-text use. Existing catalog items remain `link_only` until individually imported.
 
@@ -19,7 +19,8 @@ Rules: Change only the requested phase after approval. Mark complete only after 
 
 ## Post-permission work (pending; not a completed phase)
 
-- [x] Prepared one-story manual import script and per-item attribution for `aruni-uddalaka`; source text not imported, reviewed, or published (2026-11-15).
+- [x] Prepared one-story manual importer and per-item attribution for `aruni-uddalaka`; merged to main (2026-11-15).
+- [x] Prepared **one-time direct website fetch** and documented VyasaOnline Reader / GitHub `content` cross-references (branch only; not run; 2026-11-15).
 
 - [ ] Selected website-text import with source URL, attribution, and version metadata.
 - [ ] Review each imported item before changing its catalog status to `approved`.

@@ -64,11 +64,11 @@ Limits: positions and bookmarks live only in this browser on this device. Cleari
 ## Content rules (Phase 02)
 
 - `content_status` is `link_only` or `approved`. `approved` items load a JSON file from `data/content/` (blocks of `heading`, `paragraph`, `verse`, each with a stable `id`).
-- Only the fictional demo is currently `approved`. Permission for selected website translations is now documented, but no translation importer or fetcher has been implemented. Add content only in a separately approved integration task.
+- Only the fictional demo is currently `approved`. A one-story manual/direct HTTPS importer is available at `scripts/import_selected_story.py` for `aruni-uddalaka`; it writes **private, review-pending** JSON. The website story remains `link_only` until separately reviewed and privately deployed; see `docs/FIRST_IMPORT.md`.
 
 ## Next work
 
-Follow the post-permission task sequence in `PLAN.md`: per-item import and attribution first; revised Adi Parva / other recension material / Shastra Samgraha refresh support later; optional bounded offline text cache only after a separate review. No content has been imported or deployed by this documentation update.
+Follow `docs/FIRST_IMPORT.md` for a **single one-time website fetch** (`--fetch`) or private text-file import, paragraph review, and approval. Reference the author's reader at https://vyasaonline.github.io/mahAbhArata/ and its GitHub `content` branch at https://github.com/vyasaonline/mahAbhArata/tree/content only for chapter cross-checking, not automatic replacement of website text. No content has been imported or deployed by this change. Revision handling and offline text caching remain separate work.
 
 ## Project documents
 
@@ -77,6 +77,7 @@ Follow the post-permission task sequence in `PLAN.md`: per-item import and attri
 | `CLAUDE.md` | Mandatory Claude Code behavior, restrictions, and short response format |
 | `PLAN.md` | MVP scope, phase boundaries, data behavior, manual acceptance |
 | `docs/PROGRESS.md` | **Required by `CLAUDE.md`** to know which phase is pending or complete |
+| `docs/FIRST_IMPORT.md` | One-story website import and GitHub chapter cross-reference; manual review required |
 | `SOURCES_AND_RIGHTS.md` | Original website links and permission questions |
 | `prompts/PHASE_XX_*.md` | Existing phase-specific Claude Code instructions |
 | `docs/PWA.md` | PWA install, caching scope, and troubleshooting |
