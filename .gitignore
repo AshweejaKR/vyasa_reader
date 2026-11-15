@@ -179,3 +179,7 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# Private selected VyasaOnline translation; do not publish via public Git
+data/content/aruni-uddalaka.json
+private-story.txt
