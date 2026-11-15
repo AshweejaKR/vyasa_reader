@@ -5,7 +5,7 @@
 - App shell only: `/offline`, `static/style.css`, `static/reader.js`, `static/resume.js`, the manifest, and the icon (cache `vyasa-shell-v1` in `static/sw.js`).
 - Story pages, catalog pages, and any `data/content` text are **never** cached by the service worker. Link-only entries and VyasaOnline pages or PDFs are never fetched, cached, or proxied. Cross-origin requests are ignored.
 - Offline, a page navigation shows `/offline` ("You are offline"). Saved position and bookmarks stay in localStorage but cannot open stories without a connection.
-- If a content-caching permission is later recorded in `docs/CONTENT_ACCESS_DECISION.md`, caching can be revisited in a separate phase.
+- Written permission for limited offline caching in the described personal app was received 2026-11-10. **No text cache is implemented yet.** Consider bounded, versioned same-origin caching of reviewed approved items in a separate task; support cache invalidation/removal and do not cache third-party images or PDFs.
 
 ## Requirements
 
