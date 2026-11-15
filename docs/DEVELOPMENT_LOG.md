@@ -1,5 +1,12 @@
 # Development Log
 
+## 2026-11-15 — Prepared private Kannada story draft (same unmerged branch)
+- Scope: First actual website-text content candidate for `aruni-uddalaka` only.
+- Summary: Retrieved the original VyasaOnline story and assembled six Kannada narrative paragraphs in `data/content/aruni-uddalaka.json` with original URL, B.M. Ramesh attribution, chapter cross-reference, stable `p0001`–`p0006` IDs, permission date, SHA-256, and `review_status: pending`. Provided the JSON separately as a private downloadable package. No text was added to GitHub and the public catalog remains `link_only`. The JSON was manually assembled from the retrieved page text, **not** produced by executing the repo importer.
+- Source hash: `a448285a02fb0b30e7ba00322afbc041dbeda16bba30331a3dbfeb81acbb040c` (six paragraphs separated by two newlines).
+- Modified documentation: `README.md`, `docs/FIRST_IMPORT.md`, `docs/PROGRESS.md`, `docs/DEVELOPMENT_LOG.md`.
+- Verification: private JSON parsed and checked for six unique nonempty ordered blocks and consistent hash; no byte-for-byte HTML source comparison, owner sign-off, importer run, Flask runtime, Android or EC2 validation. Content remains pending review, not installed or published.
+
 ## 2026-11-15 — First-story source-boundary guard (same unmerged branch)
 - Scope: Safe, source-specific extraction for `aruni-uddalaka`; no other chapters or bulk import.
 - Summary: Checked the original VyasaOnline story text (six narrative paragraphs) and tightened `scripts/import_selected_story.py`: stop at the “The other stories” section even outside a paragraph, require exactly six paragraphs, and verify beginning/end text before generating private review-pending JSON. The existing explicit approval gate and public `link_only` catalog state remain.

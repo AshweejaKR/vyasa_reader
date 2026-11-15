@@ -1,7 +1,7 @@
 # Phase Progress — Vyasa Reader
 
 Current phase: **All planned phases (00–06) written**
-Current status: **Permission recorded; direct website-fetch support merged to main (PR #4); imported-text review guard prepared on `fix/first-story-review-gate` (not merged); real story text import, manual approval, Android and EC2 verification pending**
+Current status: **Permission recorded; direct website-fetch support merged to main (PR #4); imported-text review guard on `fix/first-story-review-gate` (not merged); private six-paragraph story draft generated outside Git and available for owner review; final text approval, private installation, Android and EC2 verification pending**
 
 Note: Phase 01 was implemented before Phase 00; the sequence is now reconciled. Phase 00 originally used `link_only`; 2026-11-10 author permission now allows the described personal-app website-text use. Existing catalog items remain `link_only` until individually imported.
 
@@ -24,7 +24,7 @@ Rules: Change only the requested phase after approval. Mark complete only after 
 - [x] Inspected primary source page: six narrative paragraphs plus unrelated index/comments. Added server-side imported-text review gate on branch `fix/first-story-review-gate` (not run; 2026-11-15).
 - [x] Strengthened one-story importer on the **same branch**: stop at “The other stories”; require exactly six paragraphs and known opening/closing text. Static review only; no private JSON generated and no runtime checks run (2026-11-15).
 
-- [ ] Selected website-text import with source URL, attribution, and version metadata.
+- [x] Prepared private six-paragraph `aruni-uddalaka.json` from retrieved VyasaOnline text with source URL, attribution, import time, and SHA-256 (2026-11-15). This is an external downloadable artifact **not** committed, run via the repository importer, reviewed or installed.
 - [ ] Review each imported item before changing its catalog status to `approved`.
 - [ ] Manual reader/resume/bookmark checks and handling of revised paragraph anchors.
 - [ ] Manual revision refresh for Adi Parva, additional recensions, and Shastra Samgraha when available.
