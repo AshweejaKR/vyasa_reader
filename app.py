@@ -1,4 +1,5 @@
 import json
+import re
 from pathlib import Path
 
 from flask import Flask, abort, render_template, send_from_directory
@@ -8,7 +9,6 @@ CATALOG_PATH = BASE_DIR / "data" / "catalog.json"
 CONTENT_DIR = (BASE_DIR / "data" / "content").resolve()
 REQUIRED = ("id", "title", "collection", "sort_order", "source_url", "content_status")
 BLOCK_TYPES = ("heading", "paragraph", "verse")
-import re
 
 SAFE_ID = re.compile(r"^[A-Za-z0-9_-]{1,64}$")
 
