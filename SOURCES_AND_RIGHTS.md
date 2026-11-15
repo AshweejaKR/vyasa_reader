@@ -15,9 +15,15 @@
 
 The website says the Kannada translation of the 18 Maha Parvas was completed in 2022. The public repository describes the translator as **BM Ramesh**. The checked repository's root file list did not expose an obvious `LICENSE` file; this is **not proof** no license/permission exists elsewhere.
 
+## Written permission update (2026-11-10)
+
+Written permission: BM Ramesh replied on 2026-11-10 to the 2026-11-04 personal, non-commercial Vyasa Reader request, saying “Please go ahead and use the content on my website. No issues.” The request expressly described hosting selected Kannada translation text on personal AWS, readability-only reformatting, limited personal offline browser caching, and one-time rate-limited retrieval from website or GitHub. Reply also asks whether revised translations (Adi Parva in progress), additional recension portions, and Shastra Samgraha can be reflected when ready. User acknowledged on 2026-11-11. Keep the original correspondence privately; do not commit the PDF or email addresses to this public repository.
+
+The owner's express reply permits the described personal reading app use of **website content**. Preserve attribution and original links. Do not assume permission covers third-party media, commercial redistribution, or all GitHub content. See `docs/CONTENT_ACCESS_DECISION.md` for boundaries and import controls.
+
 ## What remains unverified
 
-1. Permission to **copy, transform, host, cache or redistribute** Kannada translations or associated pictures/PDFs.
+1. Separate rights for **third-party illustrations, pictures, PDFs**, commercial reuse, and any uses beyond the described personal app.
 2. Whether the WordPress REST API is publicly enabled, what endpoints are intended for reuse, and whether cross-origin access is allowed. The endpoints were not validated during this planning pass.
 3. Whether the source allows embedding in iframes or third-party proxying. Do not assume it does.
 4. Whether any content-specific license applies in the linked GitHub repo or author correspondence.
@@ -26,7 +32,7 @@ The website says the Kannada translation of the 18 Maha Parvas was completed in 
 ## Safe MVP recommendation
 
 - Start with your own catalog containing source URLs/titles, and self-written demo reading content.
-- Obtain written permission or identify an explicit license **before** importing the actual translations into your reader/EC2.
+- Written permission for the described website-text use is now recorded. Import only selected website text after attribution/source tracking; do not assume third-party media rights.
 - Record author, original URL, license text/permission date, any restrictions (public vs private hosting, offline caching, attribution), and allowed source format.
 - On refusal or uncertainty, keep an external-link-only mode. It cannot deliver exact resume on third-party pages.
 - A public repository and 'free download' are not blanket republication permissions.
