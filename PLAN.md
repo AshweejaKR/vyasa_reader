@@ -14,14 +14,14 @@ Build an independent, Android-first Kannada Mahabharata reader that also works o
 - Install as an Android PWA over HTTPS; use a home-screen icon and basic offline app shell.
 - Work on mobile and desktop. Progress is **device/browser-specific**, not synchronized.
 
-**Out of scope:** Database, login, cloud sync, React, APIs for third-party scraping, bulk import, AI features, analytics, and unauthorized copies of translations.
+**Out of scope:** Database, login, cloud sync, React, bulk scraping, AI features, analytics, unrelated commercial redistribution, and third-party media without separate rights.
 
 ## Content-rights gate
 
 - Use `SOURCES_AND_RIGHTS.md` for known URLs and unknown permissions.
 - Public accessibility or a public GitHub repository **does not** prove reuse rights.
-- Until rights are established, store titles and original URLs as `link_only`. Use only independently written sample text for the in-app reader.
-- Add actual translations only when a license or written permission covers hosting and any intended caching/transformation. Keep source attribution and URLs.
+- Website-text permission is recorded in `docs/CONTENT_ACCESS_DECISION.md` (2026-11-10). Keep existing entries `link_only` until each is individually imported, attributed, and reviewed.
+- Import selected website text under the documented personal, non-commercial permission. Preserve BM Ramesh / VyasaOnline attribution and original URLs. Exclude third-party illustrations/PDFs and broad GitHub reuse pending separate confirmation.
 - External pages may open in a browser; **the app cannot reliably resume exact scroll position on VyasaOnline**. Do not promise it.
 
 ## Minimal stack
@@ -45,6 +45,17 @@ Build an independent, Android-first Kannada Mahabharata reader that also works o
 | **06** | EC2 deployment instructions/configuration | Deployment runbook for Gunicorn + Nginx + systemd + HTTPS |
 
 **Phase prompts:** `prompts/PHASE_00_SOURCE_AND_RIGHTS.md` through `prompts/PHASE_06_EC2_DEPLOY.md` in this project. Implement only one explicitly requested phase. No later-phase work.
+
+## Post-permission work (one scoped task at a time)
+
+1. **Permission and metadata:** Record the private evidence reference and per-item attribution/source URL. No permission PDF or email addresses in public Git.
+2. **Selected website-text import:** Add a small, manual/rate-limited import path; preserve paragraph/verse structure, escape source HTML, keep stable IDs, review each item before switching `link_only` to `approved`.
+3. **Reader validation:** Manually check Kannada rendering, Previous/Next, bookmarks, auto-resume, and fallbacks after text revisions. Existing implementation remains unverified.
+4. **Revisions:** Support manual refresh and source version metadata for revised Adi Parva, additional recension material, and Shastra Samgraha when published. Avoid unattended scraping; keep a rollback path.
+5. **Offline content:** Extend app-shell-only caching to selected approved same-origin text only after bounded storage, invalidation, versioning, and removal handling are designed and approved.
+6. **PWA/deployment:** Supply PNG icons and manually verify HTTPS installation, Android reopen, offline behavior, and EC2 security. No deployment implied by document updates.
+
+These are proposed maintenance/integration tasks, **not completed phases**. Keep the existing simple Flask + JSON architecture. Work on only one explicitly requested task at a time.
 
 ## Strict implementation workflow
 
