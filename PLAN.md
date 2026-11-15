@@ -1,6 +1,6 @@
 # PLAN.md — Vyasa Reader
 
-**Status:** Phases 00–06 written; runtime and deployment unverified. Permission recorded 2026-11-10. Post-permission content integration pending. First review fixes merged to `main` on 2026-11-15; post-merge follow-up fixes on `fix/post-merge-review-2026-11` pending merge.
+**Status:** Phases 00–06 written; runtime and deployment unverified. Permission recorded 2026-11-10. Both earlier review fixes and first-story manual-import preparation were merged to `main`. Direct, one-story website-fetch update is on `feat/vyasaonline-direct-story-import` pending review/merge; no real translation text imported.
 
 ## Goal
 
@@ -49,7 +49,7 @@ Build an independent, Android-first Kannada Mahabharata reader that also works o
 ## Post-permission work (one scoped task at a time)
 
 1. **Permission and metadata:** Record the private evidence reference and per-item attribution/source URL. No permission PDF or email addresses in public Git.
-2. **Selected website-text import:** Add a small, manual/rate-limited import path; preserve paragraph/verse structure, escape source HTML, keep stable IDs, review each item before switching `link_only` to `approved`.
+2. **Selected website-text import:** Prepare a single, manual or one-time website-HTTPS retrieval path; preserve paragraph structure, escape source HTML, keep stable IDs, and review each item before switching `link_only` to `approved`. The short VyasaOnline story is the primary permitted source; the author's GitHub `content` branch and hosted reader are chapter references, not interchangeable text or broad reuse licenses.
 3. **Reader validation:** Manually check Kannada rendering, Previous/Next, bookmarks, auto-resume, and fallbacks after text revisions. Existing implementation remains unverified.
 4. **Revisions:** Support manual refresh and source version metadata for revised Adi Parva, additional recension material, and Shastra Samgraha when published. Avoid unattended scraping; keep a rollback path.
 5. **Offline content:** Extend app-shell-only caching to selected approved same-origin text only after bounded storage, invalidation, versioning, and removal handling are designed and approved.
