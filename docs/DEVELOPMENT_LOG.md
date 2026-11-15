@@ -1,5 +1,12 @@
 # Development Log
 
+## 2026-11-15 — Permission evidence and documentation alignment
+- Summary: Recorded BM Ramesh's 2026-11-10 express permission for the described personal, non-commercial Vyasa Reader website-text use. Added per-item import/attribution gate, manual revision support for Adi Parva, additional recensions and Shastra Samgraha, and separate bounded offline-cache decision. Historical phase completion preserved; no source import or deployment.
+- Modified: `docs/CONTENT_ACCESS_DECISION.md`, `SOURCES_AND_RIGHTS.md`, `PLAN.md`, `README.md`, `docs/PROGRESS.md`, `docs/PWA.md`, `CLAUDE.md`, `docs/DEVELOPMENT_LOG.md`
+- Evidence: private email retained by owner; no PDF or email addresses committed.
+- Verification: documentation reviewed; runtime not run
+
+
 ## 2026-10-29 — Phase 06: EC2 deployment docs
 - Summary: Runbook for an existing Amazon Linux EC2 instance: read-only AMI/arch/Python checks (AL2023 path; AL2 flagged as unsupported because its Python 3.7 is too old), Elastic IP and DNS, Security Group (443/80 public, 22 from owner IP, 8000 never public), non-root `vyasa` user and venv, Gunicorn on `127.0.0.1:8000` under systemd, Nginx HTTPS proxy with HTTP redirect, Let's Encrypt via Certbot (dnf or official pip method) with renewal timer, SELinux note, logs, update and rollback, cost factors without amounts, and user-run verification (HTTPS, port 8000 closed, reboot, logs, storage, Android install/resume/offline). No commands run; no AWS changes.
 - Added: `deploy/DEPLOY_EC2.md`, `deploy/vyasa-reader.service`, `deploy/nginx-vyasa-reader.conf`
