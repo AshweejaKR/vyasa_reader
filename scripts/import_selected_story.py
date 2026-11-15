@@ -50,6 +50,8 @@ class StoryBody(HTMLParser):
             self.paragraph = []
 
     def handle_data(self, data):
+        if self.content_depth is not None and data.strip().casefold().startswith("the other stories"):
+            self.stopped = True
         if (self.paragraph is not None and not self.stopped
                 and not any(t in self.tags for t in ("script", "style", "noscript"))):
             self.paragraph.append(data)
@@ -84,8 +86,6 @@ def fetch_paragraphs():
     parser = StoryBody()
     parser.feed(page.decode("utf-8-sig"))
     parts = parser.paragraphs
-    if not 4 <= len(parts) <= 12 or not any("ಆರುಣಿ" in p for p in parts):
-        raise SystemExit("Story structure unexpected; use a reviewed private UTF-8 text file.")
     return parts
 
 
@@ -106,8 +106,13 @@ def main():
         parts = [p.strip() for p in re.split(r"\n\s*\n", raw.replace("\r\n", "\n")) if p.strip()]
         method = "manual_text"
     text = "\n\n".join(parts)
-    if not 2 <= len(parts) <= 100 or not 1 <= len(text) <= 100_000:
-        raise SystemExit("Story text/paragraph count is outside the allowed range.")
+    if not 1 <= len(text) <= 100_000:
+        raise SystemExit("Story text is outside the allowed size range.")
+    if (len(parts) != 6
+            or not parts[0].startswith("ಆರುಣಿ ಉದ್ಧಾಲಕನ ಈ ಕಥೆಯು")
+            or not parts[-1].startswith("ಉಪಾದ್ಯಾಯನ ಈ ಮಾತುಗಳನ್ನು ಕೇಳಿ")):
+        raise SystemExit("Expected six story paragraphs with known introduction and ending; "
+                         "inspect source and use a reviewed private UTF-8 text file.")
     content = {
         "title": "ಆರುಣಿ ಉದ್ಧಾಲಕ", "author": "B.M. Ramesh",
         "source_name": "VyasaOnline", "source_url": SOURCE_URL,

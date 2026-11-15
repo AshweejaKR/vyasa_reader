@@ -22,6 +22,7 @@ Rules: Change only the requested phase after approval. Mark complete only after 
 - [x] Prepared one-story manual importer and per-item attribution for `aruni-uddalaka`; merged to main (2026-11-15).
 - [x] One-time direct website-fetch importer and source references merged to main (PR #4; importer not run; 2026-11-15).
 - [x] Inspected primary source page: six narrative paragraphs plus unrelated index/comments. Added server-side imported-text review gate on branch `fix/first-story-review-gate` (not run; 2026-11-15).
+- [x] Strengthened one-story importer on the **same branch**: stop at “The other stories”; require exactly six paragraphs and known opening/closing text. Static review only; no private JSON generated and no runtime checks run (2026-11-15).
 
 - [ ] Selected website-text import with source URL, attribution, and version metadata.
 - [ ] Review each imported item before changing its catalog status to `approved`.

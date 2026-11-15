@@ -1,5 +1,11 @@
 # Development Log
 
+## 2026-11-15 — First-story source-boundary guard (same unmerged branch)
+- Scope: Safe, source-specific extraction for `aruni-uddalaka`; no other chapters or bulk import.
+- Summary: Checked the original VyasaOnline story text (six narrative paragraphs) and tightened `scripts/import_selected_story.py`: stop at the “The other stories” section even outside a paragraph, require exactly six paragraphs, and verify beginning/end text before generating private review-pending JSON. The existing explicit approval gate and public `link_only` catalog state remain.
+- Modified: `scripts/import_selected_story.py`, `README.md`, `docs/FIRST_IMPORT.md`, `docs/PROGRESS.md`, `docs/DEVELOPMENT_LOG.md`.
+- Verification: source inspection and static change review only; importer and runtime tests not run under `CLAUDE.md` project rules. Translation text not downloaded into a private JSON file, reviewed, approved, deployed, or committed.
+
 ## 2026-11-15 — Prevent unreviewed imported text from appearing (feature branch)
 - Scope: First selected story `aruni-uddalaka` review safeguard before any real translation is enabled.
 - Summary: Checked the primary VyasaOnline story page (six narrative paragraphs, then unrelated stories index/comments). Added a Flask content-loader gate requiring `review_status: "approved"` for imported website items with a source URL. Existing original demo without source URL remains unaffected. Updated first-import instructions and stale merged-branch status.

@@ -68,7 +68,7 @@ Limits: positions and bookmarks live only in this browser on this device. Cleari
 
 ## Next work
 
-Follow `docs/FIRST_IMPORT.md` for a **single one-time website fetch** (`--fetch`) or private text-file import, paragraph review, and approval. Reference the author's reader at https://vyasaonline.github.io/mahAbhArata/ and its GitHub `content` branch at https://github.com/vyasaonline/mahAbhArata/tree/content only for chapter cross-checking, not automatic replacement of website text. No content has been imported or deployed by this change. Revision handling and offline text caching remain separate work.
+Follow `docs/FIRST_IMPORT.md` for a **single one-time website fetch** (`--fetch`) or private text-file import, paragraph review, and approval. The Aruni importer now fails closed unless exactly six paragraphs begin and end with the expected original-story text; this is a source-structure guard, **not** proof of textual accuracy. Reference the author's reader at https://vyasaonline.github.io/mahAbhArata/ and its GitHub `content` branch at https://github.com/vyasaonline/mahAbhArata/tree/content only for chapter cross-checking, not automatic replacement of website text. No content has been imported or deployed by this change. Revision handling and offline text caching remain separate work.
 
 ## Project documents
 
