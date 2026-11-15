@@ -2,7 +2,7 @@
 
 ## What is cached
 
-- App shell only: `/offline`, `static/style.css`, `static/reader.js`, `static/resume.js`, the manifest, and the icon (cache `vyasa-shell-v1` in `static/sw.js`).
+- App shell only: `/offline`, `static/style.css`, `static/reader.js`, `static/resume.js`, the manifest, and the SVG/192px/512px PNG icons (cache `vyasa-shell-v3` in `static/sw.js`).
 - Story pages, catalog pages, and any `data/content` text are **never** cached by the service worker. Link-only entries and VyasaOnline pages or PDFs are never fetched, cached, or proxied. Cross-origin requests are ignored.
 - Offline, a page navigation shows `/offline` ("You are offline"). Saved position and bookmarks stay in localStorage but cannot open stories without a connection.
 - Written permission for limited offline caching in the described personal app was received 2026-11-10. **No text cache is implemented yet.** Consider bounded, versioned same-origin caching of reviewed approved items in a separate task; support cache invalidation/removal and do not cache third-party images or PDFs.
@@ -17,7 +17,7 @@
 
 1. Open the HTTPS address in Chrome and wait for the page to load (reload once so the service worker takes control).
 2. Menu (three dots) > **Install app** (or **Add to Home screen** > **Install**).
-3. Open Vyasa Reader from the home screen icon; it should open without the address bar.
+3. Open Vyasa Reader from the home screen icon; it should open without the address bar. The manifest start URL `/?launch=pwa` signals an app-icon launch for auto-resume and the app clears the marker before normal navigation. Android behavior remains unverified.
 
 ## Updates
 
@@ -33,4 +33,4 @@ When `sw.js` changes (bump `CACHE` in `static/sw.js` whenever shell files change
 
 ## Icon note
 
-The icon is a self-made SVG (`static/icons/icon.svg`, referenced with `sizes: any`). PNG icons at 192x192 and 512x512 could not be generated without running commands. Add them and list them in the manifest if a Chrome version or launcher requires PNG.
+The project includes an original SVG book icon plus matching 192x192 and 512x512 PNG icons (`static/icons/`). The manifest lists all three; PNG and Android launcher rendering are not yet device-verified.

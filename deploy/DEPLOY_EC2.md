@@ -106,12 +106,13 @@ Renewal stops Nginx for a few seconds only when a certificate is actually renewe
 ```
 sudo sed "s/YOUR_DOMAIN/your.real.domain/g" /opt/vyasa-reader/deploy/nginx-vyasa-reader.conf | sudo tee /etc/nginx/conf.d/vyasa-reader.conf
 sudo nginx -t
-sudo systemctl enable --now nginx
+sudo systemctl enable nginx
+sudo systemctl restart nginx
 ```
 
 If `getenforce` printed `Enforcing`, allow Nginx to reach Gunicorn: `sudo setsebool -P httpd_can_network_connect 1`.
 
-The app must stay at the site root (`/`): the PWA `scope`, `start_url`, and `/sw.js` assume it. Nginx passes Flask's `Cache-Control: no-cache` on `/sw.js` through unchanged; do not add long cache headers for it.
+The app must stay at the site root (`/`): the PWA `scope`, `start_url` (`/?launch=pwa`), and `/sw.js` assume it. Nginx passes Flask's `Cache-Control: no-cache` on `/sw.js` through unchanged; do not add long cache headers for it.
 
 ## 7. Operate
 

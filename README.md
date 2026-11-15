@@ -1,6 +1,6 @@
 # Vyasa Reader
 
-**Status:** Phases 00–06 written; runtime and deployment not verified. Written permission for the described personal, non-commercial website-text use received 2026-11-10. Existing catalog remains link-only except the fictional demo until selected translations are imported.
+**Status:** Phases 00–06 written, including PWA PNG icons; runtime, Android, and deployment not verified. Written permission for the described personal, non-commercial website-text use received 2026-11-10. Existing catalog remains link-only except the fictional demo until selected translations are imported.
 
 Small, independent Kannada Mahabharata reader for **Android and PC**, intended to run on an AWS EC2 instance. Goal: comfortable reading and resume from where you stopped.
 
@@ -49,7 +49,7 @@ Open `/read/demo-story` at about 360 px, 412 px, and desktop width (browser dev 
 
 ## Resume and bookmarks manual checks (Phase 04; not run / not verified)
 
-State is one versioned localStorage key, `vyasa.v1.state` (last item, block anchor, offset ratio, time, per-item positions, bookmarks, auto-resume flag). A "fresh launch" is a new browser session (no `vyasa.v1.session` in sessionStorage) that did not come from another page of this site. Opening `/` in a new tab counts as a fresh launch.
+State is one versioned localStorage key, `vyasa.v1.state` (last item, block anchor, offset ratio, time, per-item positions, bookmarks, auto-resume flag). A "fresh launch" is a new browser session (no `vyasa.v1.session` in sessionStorage) that did not come from another page of this site, or an installed-app icon launch marked by `/?launch=pwa`. The app removes this marker before normal navigation; ordinary Home links and refreshes must not trigger app-icon auto-resume.
 
 1. Open `/read/demo-story`, scroll mid-way, close the tab/browser, open `/` again: it redirects to the demo near the same paragraph.
 2. Refresh, A-/A+, theme change: the nearest paragraph stays in view.

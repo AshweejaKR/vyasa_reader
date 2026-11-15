@@ -1,11 +1,13 @@
-var CACHE = "vyasa-shell-v2";
+var CACHE = "vyasa-shell-v3";
 var SHELL = [
   "/offline",
   "/static/style.css",
   "/static/reader.js",
   "/static/resume.js",
   "/static/manifest.webmanifest",
-  "/static/icons/icon.svg"
+  "/static/icons/icon.svg",
+  "/static/icons/icon-192.png",
+  "/static/icons/icon-512.png"
 ];
 
 self.addEventListener("install", function (e) {

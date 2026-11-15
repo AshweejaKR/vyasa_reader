@@ -1,5 +1,11 @@
 # Development Log
 
+## 2026-11-15 — Post-merge review findings (fix/post-merge-review-2026-11)
+- Summary: Removed duplicate reader.js load, added explicit PWA icon-launch signal for resume, added 192/512 PNG icons matching the SVG, bumped shell cache to v3, made EC2 Nginx restart apply installed configuration, and corrected outdated project docs.
+- Modified: `templates/read.html`, `static/resume.js`, `static/manifest.webmanifest`, `static/sw.js`, `deploy/DEPLOY_EC2.md`, `PLAN.md`, `README.md`, `docs/PROGRESS.md`, `docs/PWA.md`, `docs/DEVELOPMENT_LOG.md`
+- Added: `static/icons/icon-192.png`, `static/icons/icon-512.png`
+- Verification: GitHub source review only; runtime, Android, and EC2 checks not run. Changes are on a branch, not merged.
+
 ## 2026-11-15 — Review findings maintenance (branch)
 - Summary: Harden catalog/content validation, improve quick-exit progress saving and bookmark offset restore, apply theme on shared layout, restrict service worker cache to listed shell assets, correct stale plan status and EC2 clone-directory conflict.
 - Verification: source review only; runtime and Android not tested.
