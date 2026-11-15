@@ -1,4 +1,4 @@
-var CACHE = "vyasa-shell-v1";
+var CACHE = "vyasa-shell-v2";
 var SHELL = [
   "/offline",
   "/static/style.css",
@@ -34,7 +34,7 @@ self.addEventListener("fetch", function (e) {
     return;
   }
 
-  if (url.pathname.indexOf("/static/") === 0) {
+  if (SHELL.indexOf(url.pathname) !== -1) {
     e.respondWith(
       fetch(req).then(function (res) {
         var copy = res.clone();
