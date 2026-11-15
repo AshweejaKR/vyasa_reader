@@ -1,6 +1,6 @@
 # Vyasa Reader
 
-**Status:** Phases 00-05 written (link-only catalog plus a fictional in-app demo story); not yet run.
+**Status:** Phases 00–06 written; runtime and deployment not verified. Written permission for the described personal, non-commercial website-text use received 2026-11-10. Existing catalog remains link-only except the fictional demo until selected translations are imported.
 
 Small, independent Kannada Mahabharata reader for **Android and PC**, intended to run on an AWS EC2 instance. Goal: comfortable reading and resume from where you stopped.
 
@@ -8,13 +8,13 @@ Small, independent Kannada Mahabharata reader for **Android and PC**, intended t
 
 - Open the installed app icon; resume the last permitted **in-app** story near its saved paragraph.
 - Browse Stories or Parvas/Chapters. Use Previous/Next, bookmarks, larger text, and dark/light mode.
-- Open source-only entries on [VyasaOnline](https://www.vyasaonline.com/) when translation hosting permission is not established.
+- Open entries still marked `link_only` on [VyasaOnline](https://www.vyasaonline.com/). Website-text permission is recorded, but entries are not imported automatically.
 - Same-browser/device progress only; clearing site data or using private browsing can remove it. **Exact resume does not work reliably inside external VyasaOnline pages.**
 
 ## Design choices
 
 - **Python Flask + HTML/CSS/JavaScript**; no React, database, accounts, or complex architecture.
-- JSON catalog; permitted content stored locally only when its reuse rights are documented.
+- JSON catalog; selected website translations may be imported individually under the documented personal-app permission, with BM Ramesh / VyasaOnline attribution and original links.
 - Browser `localStorage` for saved position, bookmarks, and display settings.
 - HTTPS Progressive Web App (PWA); Nginx + Gunicorn + systemd on Amazon Linux EC2.
 - No automated bulk scraping or unauthorized copying of translations.
@@ -64,7 +64,11 @@ Limits: positions and bookmarks live only in this browser on this device. Cleari
 ## Content rules (Phase 02)
 
 - `content_status` is `link_only` or `approved`. `approved` items load a JSON file from `data/content/` (blocks of `heading`, `paragraph`, `verse`, each with a stable `id`).
-- Only the fictional demo is `approved`. No explicit permission to host VyasaOnline translations is recorded in `docs/CONTENT_ACCESS_DECISION.md`, so there is no importer or fetcher.
+- Only the fictional demo is currently `approved`. Permission for selected website translations is now documented, but no translation importer or fetcher has been implemented. Add content only in a separately approved integration task.
+
+## Next work
+
+Follow the post-permission task sequence in `PLAN.md`: per-item import and attribution first; revised Adi Parva / other recension material / Shastra Samgraha refresh support later; optional bounded offline text cache only after a separate review. No content has been imported or deployed by this documentation update.
 
 ## Project documents
 
@@ -113,4 +117,4 @@ See `PLAN.md` for specific deliverables and acceptance criteria.
 
 ## What is not promised
 
-VyasaOnline content is not automatically licensed for republication. With `link_only` content, you get navigation to the original website, **not** a full in-app reader with scroll restoration. The full reading/resume experience needs content you are allowed to serve. See `SOURCES_AND_RIGHTS.md`.
+The author's written permission covers the described personal, non-commercial app use of website text, **not** a blanket open-source license. Existing `link_only` items still open externally and cannot resume precisely. See `docs/CONTENT_ACCESS_DECISION.md` and `PLAN.md` for scoped import and future revision handling.
