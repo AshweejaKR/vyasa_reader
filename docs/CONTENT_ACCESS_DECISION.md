@@ -1,68 +1,26 @@
 # Content Access Decision
 
-**Decision: `link_only`.** No translation text is hosted, copied, or cached by Vyasa Reader until an explicit license or written permission is documented here. This is technical planning, not legal advice.
+**Decision: permission received for the described personal, non-commercial Vyasa Reader use (2026-11-10).** Existing catalog items remain `link_only` until their content is actually imported, attributed, and reviewed. Do not mark all items `approved` automatically.
 
-**Rights status: NOT verified.** Public access and a public GitHub repository are not republication permission.
+## Permission evidence and scope
 
-## Evidence basis
+Written permission: BM Ramesh replied on 2026-11-10 to the 2026-11-04 personal, non-commercial Vyasa Reader request, saying “Please go ahead and use the content on my website. No issues.” The request expressly described hosting selected Kannada translation text on personal AWS, readability-only reformatting, limited personal offline browser caching, and one-time rate-limited retrieval from website or GitHub. Reply also asks whether revised translations (Adi Parva in progress), additional recension portions, and Shastra Samgraha can be reflected when ready. User acknowledged on 2026-11-11. Keep the original correspondence privately; do not commit the PDF or email addresses to this public repository.
 
-Pages were fetched individually on 2026-10-29 through a page-to-text tool that summarizes the page. Raw HTML, page footers, and linked sub-pages were not inspected directly. No crawler, download, or shell command was used. Absence of a notice in a summary is weaker than absence on the page itself.
+- Evidence: email thread titled *RE: Vyasa Mahabharata — Request for Permission to Use VyasaOnline Kannada Mahabharata Content in a Personal Reading App*, reply dated 2026-11-10. Private copy held by project owner, **not stored in public Git**.
+- Permitted within the described app: selected website Kannada Mahabharata text, personal AWS hosting, readability-preserving formatting, limited browser offline caching, and modest one-time retrieval. Use the website as the expressly approved source; confirm GitHub-repository reuse separately if needed because the reply explicitly names website content.
+- Attribution promised: BM Ramesh / VyasaOnline and direct link to the original page for each imported item. Preserve text meaning and remove material if requested.
+- Not established: a general open-source license, unrestricted commercial distribution, rights to third-party images/illustrations/PDFs, mass scraping, or republishing to other products. Keep those excluded pending separate evidence.
+- Author requested future compatibility with revised translations, additions from other recensions, and the Shastra Samgraha series. This is a future-content request, **not** evidence that revisions are already published or a mandate for live scraping.
 
-## Verified (observed 2026-10-29, via summarized fetch)
+## Safe content workflow
 
-| Source | Observation |
-|---|---|
-| Stories index `https://www.vyasaonline.com/stories-in-mahabharata-kannada/` | Numbered list of 59 Kannada story links; one free PDF (Stories Vol. 1, dated 21 Jun 2020); no copyright, license, or terms notice seen; no translator named. |
-| Parvas index `https://www.vyasaonline.com/translations10/` | 18 Maha Parvas, each with a page link and PDF link; Harivamsha listed as item 19, no PDF, said to be still in translation; no copyright, license, or terms notice seen. Page credits J.A.B. van Buitenen's 1973 English translation as a source and the BORI Critical Edition as the Sanskrit base. |
-| Example story page (Aruni Uddalaka, URL in `SOURCES_AND_RIGHTS.md`) | Title, breadcrumb, story text, one illustration, inline links to encyclopedia entries, ~58 related story links, previous/next navigation, share icons, comment form; no copyright or license notice seen; no translator credit visible in the content; footer credits only the theme and WordPress. |
-| Contact page `https://www.vyasaonline.com/contact/` | Contact form only (name, email, subject, message); no email address listed; no terms of use seen. |
-| GitHub `https://github.com/vyasaonline/mahAbhArata` | Root files shown: `.github`, `content` (submodule), `data`, `themes`, `.gitignore`, `.gitmodules`, `config.toml`. No LICENSE file or license statement shown. The "View all files" listing was not expanded, so one could exist beyond what was shown. About text: translation of the Sukthankar critical edition into Kannada by BM Ramesh. |
+1. Keep `link_only` as default; record each imported item’s original URL, title, translator attribution, source revision/date, import date, and local file path.
+2. Import a small, explicitly selected website text item; review formatting and attribution before changing its catalog status to `approved`.
+3. Keep stable item/block identifiers when refreshing translations so bookmarks and resume can fall back gracefully if paragraphs change.
+4. Provide a manual, rate-limited update path for revised source text; never auto-overwrite reader content or scrape broadly. Track revisions and preserve rollback ability.
+5. Offline caching is permitted for this personal app, but opt into bounded same-origin text caching only after implementing clear versioning, cache limits, and invalidation. Existing service worker still caches app shell only.
+6. Keep original correspondence private. Record any new restrictions or withdrawal here and honor removal requests.
 
-## Documented in `SOURCES_AND_RIGHTS.md`, not rechecked
+## Historical research
 
-- The Kannada translation of the 18 Maha Parvas was completed in 2022.
-- Chapter-wise index: `https://www.vyasaonline.com/chapter-wise-translation-of-mahabharata/`.
-- GitHub-hosted reader: `https://vyasaonline.github.io/mahAbhArata/`.
-- A representative Parva or chapter page was **not** inspected; only the Parvas index was.
-
-## Unknown (blocks any `approved` content)
-
-1. Permission to copy, transform, host, cache, or redistribute the Kannada text, illustrations, or PDFs.
-2. Any license in the GitHub repo, the `content` submodule, or the site beyond what was seen.
-3. Whether the WordPress REST API is enabled or intended for reuse; not checked.
-4. Whether iframe embedding or third-party proxying is allowed; do not assume it is.
-5. Whether stable IDs and pagination exist across all chapters.
-6. Required attribution wording, and whether non-commercial and offline-caching uses are allowed.
-
-## Entry points and handling
-
-| Type | Source | Handling now |
-|---|---|---|
-| Independent story pages (59) | Stories index and individual story URLs | `link_only`: title and original URL in the catalog, opened on VyasaOnline. |
-| Parva and chapter pages (18 + Harivamsha) | Parvas index and per-Parva pages | `link_only`, same as above. Chapter-level structure still to be inspected. |
-| PDFs | Linked from the indexes | Link only. Do not rehost. |
-| In-app reader text | Self-written demo text only | Allowed. Not translation content. |
-
-Catalog statuses: `link_only` (default) and `approved`. `approved` requires a license or written permission recorded below, with date and conditions.
-
-## Attribution pattern
-
-Every entry shows the title, "Source: VyasaOnline" with a link to the original URL, and the translator named only as documented (BM Ramesh per the GitHub About text). Do not imply an official VyasaOnline app or endorsement.
-
-## Technical limitations
-
-- External pages cannot be resumed to an exact scroll position; do not promise it.
-- Link-only entries give navigation and "last opened" tracking at most, not paragraph restore.
-- Source pages may change; no import should rely on their HTML structure.
-
-## Open questions for the owner
-
-See the request below. Record the reply, date, and conditions in this file before changing any entry to `approved`.
-
-## Permission request (draft)
-
-> Namaste. I am building a small, personal, non-commercial Kannada reader app (a mobile-friendly website that can be installed on a phone). It currently only links to your stories and Parvas on vyasaonline.com. I would like your permission to (a) show selected Kannada translations inside the app on my server, (b) reformat the text for comfortable reading, (c) allow browser offline caching, and (d) retrieve the text from your site or repository in a small, one-time, rate-limited way. Each item would carry your name, the original link, and any attribution wording you specify, and I would remove anything on request. Could you tell me whether this is allowed, which items or licence terms apply, and the attribution you prefer? Until I hear from you, the app will only link to your site.
-
-## Permission record
-
-None received. Date: n/a. Conditions: n/a.
+Earlier source checks (2026-10-29) found the stories and Parvas indexes, chapter index, and the public GitHub repository; no obvious repository license was found. Those checks predate the direct written permission and no longer block the narrowly described website-text use. See `SOURCES_AND_RIGHTS.md` for entry points and unresolved technical details.
