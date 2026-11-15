@@ -1,6 +1,6 @@
 # PLAN.md — Vyasa Reader
 
-**Status:** Phases 00–06 written; runtime and deployment unverified. Permission recorded 2026-11-10. Post-permission content integration pending. Review fixes on separate branch.
+**Status:** Phases 00–06 written; runtime and deployment unverified. Permission recorded 2026-11-10. Post-permission content integration pending. First review fixes merged to `main` on 2026-11-15; post-merge follow-up fixes on `fix/post-merge-review-2026-11` pending merge.
 
 ## Goal
 

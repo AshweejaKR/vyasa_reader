@@ -35,10 +35,15 @@
     try { localStorage.setItem(KEY, JSON.stringify(s)); return true; } catch (e) { return false; }
   }
 
-  // A fresh launch is a new browser session not reached from another page of this site.
+  // The installed-app start URL marks home-screen launches even if sessionStorage survives.
+  var appLaunch = location.pathname === "/" && new URLSearchParams(location.search).get("launch") === "pwa";
   var fresh = false;
   try { fresh = !sessionStorage.getItem(SESSION); sessionStorage.setItem(SESSION, "1"); } catch (e) { fresh = false; }
-  if (document.referrer.indexOf(location.origin + "/") === 0) fresh = false;
+  if (document.referrer.indexOf(location.origin + "/") === 0 && !appLaunch) fresh = false;
+  if (appLaunch) {
+    fresh = true;
+    history.replaceState(null, "", location.pathname);
+  }
 
   function reader(box, item) {
     var blocks = box.querySelectorAll("[id]");
