@@ -39,8 +39,8 @@ Port 8000 must **never** be open; Gunicorn listens on loopback only. Outbound: d
 ```
 sudo dnf install -y python3 python3-pip git nginx
 sudo useradd --system --no-create-home --home-dir /opt/vyasa-reader --shell /sbin/nologin vyasa
-sudo mkdir /opt/vyasa-reader && sudo chown vyasa:vyasa /opt/vyasa-reader
-sudo -u vyasa git clone REPO_URL /opt/vyasa-reader
+sudo git clone REPO_URL /opt/vyasa-reader
+sudo chown -R vyasa:vyasa /opt/vyasa-reader
 sudo -u vyasa python3 -m venv /opt/vyasa-reader/.venv
 sudo -u vyasa /opt/vyasa-reader/.venv/bin/pip install -r /opt/vyasa-reader/requirements.txt
 ```

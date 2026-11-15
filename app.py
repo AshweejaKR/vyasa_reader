@@ -1,4 +1,5 @@
 import json
+import re
 from pathlib import Path
 
 from flask import Flask, abort, render_template, send_from_directory
@@ -8,6 +9,8 @@ CATALOG_PATH = BASE_DIR / "data" / "catalog.json"
 CONTENT_DIR = (BASE_DIR / "data" / "content").resolve()
 REQUIRED = ("id", "title", "collection", "sort_order", "source_url", "content_status")
 BLOCK_TYPES = ("heading", "paragraph", "verse")
+
+SAFE_ID = re.compile(r"^[A-Za-z0-9_-]{1,64}$")
 
 app = Flask(__name__)
 
@@ -27,10 +30,24 @@ def load_catalog():
         if (
             isinstance(entry, dict)
             and all(key in entry for key in REQUIRED)
-            and (not entry["source_url"] or str(entry["source_url"]).startswith("https://"))
+            and isinstance(entry["id"], str) and SAFE_ID.fullmatch(entry["id"])
+            and isinstance(entry["title"], str) and bool(entry["title"].strip())
+            and entry["collection"] in ("stories", "parvas")
+            and entry["content_status"] in ("link_only", "approved")
+            and isinstance(entry["sort_order"], int) and not isinstance(entry["sort_order"], bool)
+            and isinstance(entry["source_url"], str)
+            and (not entry["source_url"] or entry["source_url"].startswith("https://"))
+            and (entry["content_status"] != "link_only" or bool(entry["source_url"]))
         ):
             items.append(entry)
-    items.sort(key=lambda e: (str(e["collection"]), int(e["sort_order"]) if str(e["sort_order"]).isdigit() else 0))
+    seen = set()
+    unique = []
+    for entry in items:
+        if entry["id"] not in seen:
+            seen.add(entry["id"])
+            unique.append(entry)
+    items = unique
+    items.sort(key=lambda e: (e["collection"], e["sort_order"]))
     skipped = len(data) - len(items)
     return items, (f"{skipped} catalog entries were skipped as invalid." if skipped else None)
 
@@ -48,9 +65,13 @@ def load_content(item):
         return None
     blocks = content.get("blocks") if isinstance(content, dict) else None
     if not isinstance(blocks, list) or not all(
-        isinstance(b, dict) and b.get("type") in BLOCK_TYPES and b.get("id") and isinstance(b.get("text"), str)
+        isinstance(b, dict) and b.get("type") in BLOCK_TYPES and isinstance(b.get("id"), str) and SAFE_ID.fullmatch(b["id"])
+        and isinstance(b.get("text"), str)
         for b in blocks
     ):
+        return None
+    ids = [b["id"] for b in blocks]
+    if len(ids) != len(set(ids)):
         return None
     return content
 

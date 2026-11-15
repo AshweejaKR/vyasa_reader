@@ -1,5 +1,10 @@
 # Development Log
 
+## 2026-11-15 — Review findings maintenance (branch)
+- Summary: Harden catalog/content validation, improve quick-exit progress saving and bookmark offset restore, apply theme on shared layout, restrict service worker cache to listed shell assets, correct stale plan status and EC2 clone-directory conflict.
+- Verification: source review only; runtime and Android not tested.
+
+
 ## 2026-11-15 — Permission evidence and documentation alignment
 - Summary: Recorded BM Ramesh's 2026-11-10 express permission for the described personal, non-commercial Vyasa Reader website-text use. Added per-item import/attribution gate, manual revision support for Adi Parva, additional recensions and Shastra Samgraha, and separate bounded offline-cache decision. Historical phase completion preserved; no source import or deployment.
 - Modified: `docs/CONTENT_ACCESS_DECISION.md`, `SOURCES_AND_RIGHTS.md`, `PLAN.md`, `README.md`, `docs/PROGRESS.md`, `docs/PWA.md`, `CLAUDE.md`, `docs/DEVELOPMENT_LOG.md`

@@ -56,6 +56,12 @@
     }
     function apply(p) {
       var el = p && document.getElementById(p.block);
+      if (!el && p && blocks.length) {
+        var old = clean(load().items[item]);
+        el = old && document.getElementById(old.block);
+        if (!el) el = blocks[0];
+        p = { block: el.id, ratio: 0 };
+      }
       if (!el || !box.contains(el) || (el === blocks[0] && p.ratio === 0)) return;
       var r = el.getBoundingClientRect();
       window.scrollTo(0, window.scrollY + r.top + r.height * p.ratio);
@@ -78,9 +84,9 @@
       clearTimeout(timer);
       timer = setTimeout(flush, 600);
     }, { passive: true });
-    document.addEventListener("visibilitychange", function () { if (document.visibilityState === "hidden") flush(); });
-    window.addEventListener("pagehide", flush);
-    document.addEventListener("click", function (e) { if (e.target.closest && e.target.closest("a")) flush(); }, true);
+    document.addEventListener("visibilitychange", function () { if (document.visibilityState === "hidden") { dirty = true; flush(); } });
+    window.addEventListener("pagehide", function () { dirty = true; flush(); });
+    document.addEventListener("click", function (e) { if (e.target.closest && e.target.closest("a")) { dirty = true; flush(); } }, true);
     document.addEventListener("vyasa:beforefont", function () { keep = current(); });
     document.addEventListener("vyasa:afterfont", function () { apply(keep); dirty = true; flush(); });
 
@@ -98,7 +104,9 @@
 
     if ("scrollRestoration" in history) history.scrollRestoration = "manual";
     var hash = location.hash.slice(1);
-    var start = ID.test(hash) ? { block: hash, ratio: 0 } : clean(load().items[item]);
+    var saved = load();
+    var bookmark = saved.bookmarks.find(function (b) { return b.item === item && b.block === hash; });
+    var start = ID.test(hash) ? (bookmark || { block: hash, ratio: 0 }) : clean(saved.items[item]);
     var fonts = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
     fonts.then(function () {
       requestAnimationFrame(function () {

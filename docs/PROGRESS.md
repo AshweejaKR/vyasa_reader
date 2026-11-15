@@ -1,7 +1,7 @@
 # Phase Progress — Vyasa Reader
 
 Current phase: **All planned phases (00–06) written**
-Current status: **Written website-text permission received 2026-11-10; integration pending; runtime and deployment not verified**
+Current status: **Permission recorded; review fixes proposed on branch; integration pending; runtime and deployment not verified**
 
 Note: Phase 01 was implemented before Phase 00; the sequence is now reconciled. Phase 00 originally used `link_only`; 2026-11-10 author permission now allows the described personal-app website-text use. Existing catalog items remain `link_only` until individually imported.
 
