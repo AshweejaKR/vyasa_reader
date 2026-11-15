@@ -1,6 +1,6 @@
 # PLAN.md — Vyasa Reader
 
-**Status:** Phases 00–06 written; runtime and deployment unverified. Permission recorded 2026-11-10. Both earlier review fixes and first-story manual-import preparation were merged to `main`. Direct, one-story website-fetch update is on `feat/vyasaonline-direct-story-import` pending review/merge; no real translation text imported.
+**Status:** Phases 00–06 written; runtime and deployment unverified. Permission recorded 2026-11-10. Direct, one-story website-fetch update merged to `main` in PR #4 (2026-11-15). First-story review enforcement is on `fix/first-story-review-gate` pending review/merge; actual website-text import and manual approval still pending.
 
 ## Goal
 

@@ -1,5 +1,11 @@
 # Development Log
 
+## 2026-11-15 — Prevent unreviewed imported text from appearing (feature branch)
+- Scope: First selected story `aruni-uddalaka` review safeguard before any real translation is enabled.
+- Summary: Checked the primary VyasaOnline story page (six narrative paragraphs, then unrelated stories index/comments). Added a Flask content-loader gate requiring `review_status: "approved"` for imported website items with a source URL. Existing original demo without source URL remains unaffected. Updated first-import instructions and stale merged-branch status.
+- Modified: `app.py`, `README.md`, `PLAN.md`, `docs/FIRST_IMPORT.md`, `docs/PROGRESS.md`, `docs/DEVELOPMENT_LOG.md`.
+- Verification: source-page review and static code review only. Importer not run; translation text not downloaded into a private JSON file, independently compared or enabled; runtime, Android and EC2 not verified. No translation text committed to public GitHub.
+
 ## 2026-11-15 — Website one-time story import and chapter references (feature branch)
 - Summary: Extended the existing `aruni-uddalaka` importer to support one explicit HTTPS fetch of the original VyasaOnline website story, extracting post paragraphs, ignoring HTML navigation/scripts/comments, and generating private JSON with source URL, author, content hash, chapter cross-reference and `pending` review status. Retained private UTF-8 text import as fallback. No public text or automatic approval.
 - References: https://vyasaonline.github.io/mahAbhArata/ and https://github.com/vyasaonline/mahAbhArata/tree/content (chapter `01_Adiparva/003_paushya-parva.md`), for cross-checking only; website story remains primary and permitted source.

@@ -1,6 +1,6 @@
 # First selected content import — Aruni Uddalaka
 
-Status: **one-story website fetch prepared on a branch; not run or reviewed**. This does not publish the translation or turn on in-app reading.
+Status: **one-story website fetch merged to main; original story source inspected 2026-11-15 (six narrative paragraphs), but importer not run and text not reviewed or deployed**. This does not publish the translation or turn on in-app reading.
 
 ## Verified references
 
@@ -10,6 +10,7 @@ Status: **one-story website fetch prepared on a branch; not run or reviewed**. T
 - **Relevant chapter:** https://github.com/vyasaonline/mahAbhArata/blob/content/01_Adiparva/003_paushya-parva.md
 - Story placement: Adi Parva → Paushya Parva → Chapter 3. The chapter Markdown includes other stories/verses; it is **not** the same as the short website story. Do not combine or silently replace text from different versions.
 - Credit: **B.M. Ramesh / VyasaOnline**. Permission dated 2026-11-10 covers the described personal, non-commercial use of **website** text. GitHub visibility or the online reader is not a separate redistribution license. No third-party images or PDFs.
+- Source preflight (2026-11-15): six narrative paragraphs precede a distinct “The other stories” index and comment form. The index and comments are not story content. Page inspection alone is not verification that the local importer extracts every paragraph correctly.
 
 ## One-story workflow
 
@@ -17,7 +18,7 @@ Status: **one-story website fetch prepared on a branch; not run or reviewed**. T
 2. If the source layout changes, or you prefer full control, copy only the Kannada story body to a private UTF-8 `.txt` file (separate source paragraphs with blank lines) and run `python scripts/import_selected_story.py private-story.txt` instead. Never import source HTML, comments, or images.
 3. Review **every generated paragraph** against the primary website page. Check that the introduction and concluding sentence are present; no "The other stories" list, navigation, comment form, or missing Kannada text. Verify spelling, line breaks, order, and source credit. The original website story is prose: do not invent Sanskrit verse numbers or use GitHub chapter text to fill gaps.
 4. Paragraph IDs are initially `p0001`, `p0002`, etc. They support resume/bookmarks, but may shift if a later source revision inserts text. Preserve existing IDs manually on revisions; this importer refuses to overwrite its output. A SHA-256 of the imported text, import date, fetch method, and unknown source revision are recorded.
-5. After manual source comparison, set the private JSON `review_status` to `approved` **and only then** change `data/catalog.json` for `aruni-uddalaka` to `content_status: approved` and `content_path: "aruni-uddalaka.json"` on the intended private deployment. The catalog must stay `link_only` on public Git while the private text is unavailable there.
+5. After manual source comparison, set the private JSON `review_status` to `approved` **and only then** change `data/catalog.json` for `aruni-uddalaka` to `content_status: approved` and `content_path: "aruni-uddalaka.json"` on the intended private deployment. The Flask loader now requires `review_status: "approved"` for every item with a nonempty original `source_url`; an imported draft cannot be displayed by accidentally approving its catalog entry. Keep the public catalog `link_only` while the private text is unavailable there.
 6. Manually verify Kannada display, credit and original link, bookmarks, auto-resume, missing-content fallback, and Android PWA behavior before treating the item as released. Record the outcome in `docs/PROGRESS.md` and `docs/DEVELOPMENT_LOG.md`.
 
 ## Privacy and compatibility

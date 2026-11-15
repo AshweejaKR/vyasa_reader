@@ -73,6 +73,9 @@ def load_content(item):
     ids = [b["id"] for b in blocks]
     if len(ids) != len(set(ids)):
         return None
+    # All imported website text requires explicit editorial approval.
+    if item["source_url"] and content.get("review_status") != "approved":
+        return None
     return content
 
 

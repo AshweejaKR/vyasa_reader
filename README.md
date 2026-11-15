@@ -64,7 +64,7 @@ Limits: positions and bookmarks live only in this browser on this device. Cleari
 ## Content rules (Phase 02)
 
 - `content_status` is `link_only` or `approved`. `approved` items load a JSON file from `data/content/` (blocks of `heading`, `paragraph`, `verse`, each with a stable `id`).
-- Only the fictional demo is currently `approved`. A one-story manual/direct HTTPS importer is available at `scripts/import_selected_story.py` for `aruni-uddalaka`; it writes **private, review-pending** JSON. The website story remains `link_only` until separately reviewed and privately deployed; see `docs/FIRST_IMPORT.md`.
+- Only the fictional demo is currently `approved`. A one-story manual/direct HTTPS importer is available at `scripts/import_selected_story.py` for `aruni-uddalaka`; it writes **private, review-pending** JSON. The website story remains `link_only` until separately reviewed and privately deployed. Flask refuses to render imported website text without `review_status: "approved"` even if the catalog status was changed accidentally; see `docs/FIRST_IMPORT.md`.
 
 ## Next work
 
