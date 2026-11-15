@@ -3,7 +3,7 @@
 ## Goal
 Build a small, readable Kannada Mahabharata PWA with automatic reading resume.
 Use Flask + plain HTML/CSS/JS. No database or extra framework in the MVP.
-Never import/rehost third-party translations without documented permission.
+Written permission dated 2026-11-10 covers the described personal, non-commercial app use of VyasaOnline website text; see `docs/CONTENT_ACCESS_DECISION.md`. Do not expand this into a blanket license or assume third-party media rights.
 
 ## Start Here — Minimum Context
 1. Read `README.md`, `PLAN.md`, and `SOURCES_AND_RIGHTS.md` when present.
@@ -13,7 +13,7 @@ Never import/rehost third-party translations without documented permission.
 5. If `docs/PROGRESS.md` is missing or conflicts with the requested phase, ask ONE short question; do not guess phase status.
 
 ## Strict Phase Mode
-- Follow `PROGRESS.md` in order. Implement exactly ONE explicitly requested phase.
+- Follow `PROGRESS.md` in order. Implement exactly ONE explicitly requested phase or explicitly scoped post-permission maintenance task.
 - Do not skip, combine, anticipate, or implement later phases.
 - Preserve existing architecture, interfaces, public APIs, and file layout.
 - Reuse existing code. No unrelated edits or refactors.
