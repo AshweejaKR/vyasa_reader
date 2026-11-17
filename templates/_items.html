@@ -1,10 +1,10 @@
-{% macro entries(items, on_demand=False) %}
+{% macro entries(items) %}
   {% if items %}
   <ul class="list">
     {% for item in items %}
     <li>
       <a href="{{ url_for('read', item_id=item.id) }}">{{ item.title }}</a>
-      <small>{% if item.content_status == 'approved' %}Read in app{% elif on_demand %}Fetch on demand (private){% else %}Link to original on {{ item.source_name or 'source site' }}{% endif %}</small>
+      <small>Open in reader</small>
     </li>
     {% endfor %}
   </ul>

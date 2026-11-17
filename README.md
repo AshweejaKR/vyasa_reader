@@ -1,6 +1,6 @@
 # Vyasa Reader
 
-**Status:** Phases 00–06 written, including PWA PNG icons; runtime, Android, and deployment not verified. Written permission for personal, non-commercial website-text use received 2026-11-10. The public catalog remains link-only except the fictional demo. One six-paragraph Kannada story has been reviewed and approved **in a separate private installation overlay**, not committed or deployed. Opt-in, password-protected on-demand source loading is now written on the unmerged feature branch, but not run or verified.
+**Status:** Phases 00–06 written, including PWA PNG icons; runtime, Android, and deployment not verified. Written permission for personal, non-commercial website-text use received 2026-11-10. The public catalog remains link-only except the fictional demo. One six-paragraph Kannada story has been reviewed and approved **in a separate private installation overlay**, not committed or deployed. Default in-app reading of selected VyasaOnline HTML stories/chapters is now implemented as source on the unmerged feature branch; password protection is optional and runtime behavior remains unverified.
 
 Small, independent Kannada Mahabharata reader for **Android and PC**, intended to run on an AWS EC2 instance. Goal: comfortable reading and resume from where you stopped.
 
@@ -8,7 +8,7 @@ Small, independent Kannada Mahabharata reader for **Android and PC**, intended t
 
 - Open the installed app icon; resume the last permitted **in-app** story near its saved paragraph.
 - Browse Stories or Parvas/Chapters. Use Previous/Next, bookmarks, larger text, and dark/light mode.
-- By default, link-only entries open on [VyasaOnline](https://www.vyasaonline.com/). With **private on-demand mode explicitly enabled**, choose a story/Parva/chapter in the app to fetch and privately cache only that selected HTML page; automatically extracted text is visibly marked unreviewed.
+- **Default:** Stories → select a story, or Parvas → select a Parva → select a chapter; each opens in the app, fetching that one permitted HTML page into private server cache if not already saved. The reader labels auto-extracted text unreviewed. VyasaOnline opens only when the reader explicitly clicks an **Original** link.
 - Same-browser/device progress only; clearing site data or using private browsing can remove it. **Exact resume does not work reliably inside external VyasaOnline pages.**
 
 ## Design choices
@@ -31,9 +31,9 @@ python app.py
 Smoke check, with the app running on http://127.0.0.1:5000:
 
 1. `/` shows "Vyasa Reader", Stories and Parvas navigation, an empty Continue Reading state, and Kannada titles.
-2. `/stories` and `/parvas` list their entries in order.
+2. `/stories` and `/parvas` lead to the app's VyasaOnline-based story and Maha Parva indexes; no special mode switch.
 3. The demo story opens at `/read/demo-story` with its demo notice, credit, and Next link. It is fictional text written for testing.
-4. A link-only title opens `/read/<id>` with an **Open Original** button; the original opens only when you click it.
+4. `/read/aruni-uddalaka` tries to fetch the selected Kannada story into a private server cache and render it in app; if extraction fails, it displays an unavailable notice and an optional source link.
 5. `/health` returns `{"status":"ok"}`.
 6. `/anything-else` and `/read/unknown` show the "Page not found" page with a 404 status.
 
@@ -45,7 +45,7 @@ Open `/read/demo-story` at about 360 px, 412 px, and desktop width (browser dev 
 2. A- and A+ change text size and disable at the limits; Dark/Light mode switches the theme.
 3. Refresh the page: size and theme are kept (`vyasa.v1.fontStep`, `vyasa.v1.theme` in localStorage).
 4. Tab through Back to library, A-, A+, theme toggle, and Previous/Next; focus is visible.
-5. The verse keeps its line break. A link-only item (`/read/aruni-uddalaka`) shows no story text and no reader controls.
+5. The demo verse keeps its line break. A supported story (`/read/aruni-uddalaka`) should display Kannada paragraphs within the reader; the original link is optional.
 
 ## Resume and bookmarks manual checks (Phase 04; not run / not verified)
 
@@ -57,7 +57,7 @@ State is one versioned localStorage key, `vyasa.v1.state` (last item, block anch
 4. Turn Auto-resume off on Home: a fresh launch shows the Continue Reading button instead.
 5. Bookmark this spot, then open it from the Home bookmark list; Remove deletes it.
 6. Set `vyasa.v1.state` to `{bad` or `[]`, or to a deleted item id: pages load normally with no redirect.
-7. Link-only items show a notice that their position is not saved.
+7. Unsupported source pages show an unavailable notice; source-site reading position is not saved. Successfully displayed HTML chapters can be bookmarked.
 
 Limits: positions and bookmarks live only in this browser on this device. Clearing site data, private/incognito mode, or another phone/browser loses them.
 
@@ -68,7 +68,7 @@ Limits: positions and bookmarks live only in this browser on this device. Cleari
 
 ## Local verification (not run)
 
-Use [`docs/LOCAL_VERIFICATION.md`](docs/LOCAL_VERIFICATION.md) to clone the unmerged feature branch, run Flask locally, and verify the approved story privately. **New:** [`docs/ON_DEMAND.md`](docs/ON_DEMAND.md) explains opt-in HTTP Basic authentication, one-page-at-a-time Kannada story/Parva/chapter loading, local server caching under ignored `data/runtime/`, fetch limits, and manual checks. The default public checkout still shows `aruni-uddalaka` as `link_only` until private mode or the separately approved overlay is installed. On-demand behavior has not been executed or tested. A source-index extraction fix on the same branch now recognizes ordered lists outside WordPress article containers and nested unordered lists inside main/article, retains the original 59-story index, and omits unrelated Parva links from chapter navigation; pull latest and restart.
+Use [`docs/LOCAL_VERIFICATION.md`](docs/LOCAL_VERIFICATION.md) and [`docs/ON_DEMAND.md`](docs/ON_DEMAND.md) for Windows setup and default in-app chapter browsing. No `VYASA_ON_DEMAND` switch or mandatory login is needed locally. A reader may set both `VYASA_PRIVATE_USER` and `VYASA_PRIVATE_PASSWORD` to protect a private HTTPS deployment. The selected story text is cached under Git-ignored `data/runtime/` and is **not** marked editorially approved. The public catalog remains `link_only` for unreviewed source material. Runtime behavior, Android and EC2 have not been verified.
 
 ## Next work
 
@@ -83,7 +83,7 @@ A six-paragraph Kannada story draft for `aruni-uddalaka` was prepared privately 
 | `docs/PROGRESS.md` | **Required by `CLAUDE.md`** to know which phase is pending or complete |
 | `docs/FIRST_IMPORT.md` | One-story website import and GitHub chapter cross-reference; manual review required |
 | `docs/LOCAL_VERIFICATION.md` | Windows/Linux local startup, private overlay install, manual checks, and safe cleanup |
-| `docs/ON_DEMAND.md` | Private on-demand chapter loading, cache/auth controls, limitations, and manual verification |
+| `docs/ON_DEMAND.md` | Default in-app chapter reading, optional credentials, cache controls, and manual checks |
 | `SOURCES_AND_RIGHTS.md` | Original website links and permission questions |
 | `prompts/PHASE_XX_*.md` | Existing phase-specific Claude Code instructions |
 | `docs/PWA.md` | PWA install, caching scope, and troubleshooting |
@@ -124,4 +124,4 @@ See `PLAN.md` for specific deliverables and acceptance criteria.
 
 ## What is not promised
 
-The author's written permission covers the described personal, non-commercial app use of website text, **not** a blanket open-source license. With on-demand mode **disabled**, existing `link_only` items still open externally and cannot resume precisely. With private mode enabled, selected supported HTML pages can be previewed in app and resumed after caching; not every source page is compatible. See `docs/CONTENT_ACCESS_DECISION.md` and `PLAN.md` for scoped import and future revision handling.
+The author's written permission covers the described personal, non-commercial app use of website text, **not** a blanket open-source license. Supported selected HTML stories and chapters open inside this reader by default and can resume after caching; no bulk download happens on launch. **Original website navigation is always explicit.** PDF-only and unsupported source pages may not render in app. See `docs/CONTENT_ACCESS_DECISION.md` and `PLAN.md` for scoped import and future revision handling.

@@ -1,5 +1,11 @@
 # Development Log
 
+## 2026-11-17 — Make in-app chapter reading the default (same unmerged branch)
+- Scope: Reader navigation and optional source-link behavior, replacing the opt-in mode switch.
+- Summary: Stories and Parvas lead directly to the in-app source indexes; selecting a supported chapter fetches/caches only that HTML page and renders it in reader. Curated source entries fall back to automatic preview if no approved private copy is available. Original website requires explicit click; unsupported content stays on an in-app notice. Removed `VYASA_ON_DEMAND` requirement and the always-on password prompt. Optional paired HTTP Basic credentials remain for private HTTPS deployment; server-side quota, host allowlist, attribution, preview/review gate, and Git-ignored cache retained.
+- Modified: `app.py`, `on_demand.py`, `templates/home.html`, `templates/_items.html`, `templates/source_list.html`, `templates/read.html`, `README.md`, `PLAN.md`, `docs/PROGRESS.md`, `docs/LOCAL_VERIFICATION.md`, `docs/ON_DEMAND.md`, `docs/CONTENT_ACCESS_DECISION.md`, `docs/DEVELOPMENT_LOG.md`.
+- Verification: Public source structures and GitHub source reviewed; app execution, fetching, bookmarks/resume, Android, EC2 and security testing **not run**; no translation text uploaded to public Git.
+
 ## 2026-11-17 — Repair empty VyasaOnline index extraction (same unmerged feature branch)
 - Scope: User-reported "Index structure unexpected; no chapters saved" in private on-demand source navigation.
 - Cause: The first parser required `entry-content`/`post-content` and `ol > li > a` simultaneously; real WordPress index list links may sit outside that narrow content wrapper or in different lists. A zero-link result triggered the error.

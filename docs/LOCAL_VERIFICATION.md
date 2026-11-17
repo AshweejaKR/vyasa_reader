@@ -1,6 +1,6 @@
 # Vyasa Reader — Local run and verification (first Kannada story)
 
-**Status:** Instructions prepared, **not executed**. This guide covers the manually approved Aruni overlay delivered privately in ChatGPT. The branch now also offers **opt-in on-demand previews** without that ZIP; see [`ON_DEMAND.md`](ON_DEMAND.md). Both workflows remain untested. Private overlay is not in Git.
+**Status:** Instructions prepared, **not executed**. The feature branch now defaults to **in-app chapter reading**, without the approved ZIP, mode variable or login prompt. See [`ON_DEMAND.md`](ON_DEMAND.md). The separately reviewed Aruni private overlay remains optional and outside Git.
 
 ## 1. Clone the feature branch (Windows PowerShell)
 
@@ -28,9 +28,9 @@ python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
 ```
 
-## Optional: automatic on-demand chapter previews
+## Default in-app chapter reading
 
-To open stories/chapters without copying private JSON or editing the public catalog, use the separate [`ON_DEMAND.md`](ON_DEMAND.md) guide. Set the three private environment variables, authenticate in the browser, browse the source index and select a chapter. It will fetch once and privately cache the selected HTML text if supported. Automatically fetched previews are **not** editorially approved; leave the public catalog `link_only`.
+No extra setup or approved private ZIP required: open Stories or Parvas, then select a supported HTML story/chapter. The selected content is fetched into a private server cache once, then displayed in the reader. Use the **View original on VyasaOnline** link only when you choose. Password is optional: set **both** `VYASA_PRIVATE_USER` and `VYASA_PRIVATE_PASSWORD` if running a personal protected HTTPS server. See [`ON_DEMAND.md`](ON_DEMAND.md). The public catalog still marks the unreviewed original story `link_only` as metadata, not a UI restriction.
 
 ## 2. Baseline without private text
 
@@ -47,10 +47,10 @@ Linux/macOS: `.venv/bin/python app.py`. Open these URLs on the same computer:
 | http://127.0.0.1:5000/ | Home, Stories, Parvas, Continue Reading |
 | http://127.0.0.1:5000/health | `{"status":"ok"}` |
 | http://127.0.0.1:5000/read/demo-story | Fictional demo and reading controls |
-| http://127.0.0.1:5000/read/aruni-uddalaka | **Link-only** notice and Open Original; no story text |
+| http://127.0.0.1:5000/read/aruni-uddalaka | Attempts in-app Kannada story fetch and display; safe fallback with explicit original link if unavailable |
 | http://127.0.0.1:5000/read/unknown | Not-found page (HTTP 404) |
 
-This baseline is **expected**: public GitHub deliberately contains neither the approved Kannada translation nor its private catalog switch.
+This checkout deliberately excludes the separately reviewed translation, but can fetch a selected **unreviewed** HTML story into the private server cache; it does not change catalog approval.
 
 ## 3. Add the *private* approved story
 
@@ -61,7 +61,7 @@ This baseline is **expected**: public GitHub deliberately contains neither the a
 5. Do **not** commit this private catalog edit or the translation file. The tracked `data/catalog.json` will appear modified in `git status`; this is intentional for private testing only.
 6. Restart Flask if needed, and open http://127.0.0.1:5000/read/aruni-uddalaka .
 
-Expected: six Kannada paragraphs, B.M. Ramesh / VyasaOnline credit, Original source link, A−/A+ controls, Dark/Light mode, Bookmark control. If only the external link appears, the catalog entry is still `link_only`. If "This text is not available right now" appears, check the JSON path and **both** approval flags.
+Expected from the approved private overlay: six Kannada paragraphs, B.M. Ramesh / VyasaOnline credit, optional Original link, reader controls and bookmarks. Without the overlay, the app may show an **unreviewed** cached story instead. If the reviewed copy does not take priority, verify JSON path and both approval flags.
 
 **Do not run the importer over this approved JSON**: `scripts/import_selected_story.py` refuses to overwrite existing content. The approved ZIP is already the selected reviewed text.
 
@@ -76,12 +76,12 @@ Expected: six Kannada paragraphs, B.M. Ramesh / VyasaOnline credit, Original sou
 | Resume | Scroll on Aruni, navigate away, then open `http://127.0.0.1:5000/?launch=pwa` | Should auto-resume Aruni near saved spot (simulates app-icon launch) |
 | Manual navigation | From Stories choose Demo or Aruni directly | Explicit choice is not overridden by resume |
 | Auto-resume off | Uncheck Auto-resume on Home; revisit `/?launch=pwa` | Home stays visible; Continue Reading still available |
-| Fallback: review | Temporarily set private JSON `review_status` to `pending`; refresh | Text unavailable; **never** shown. Restore to `approved` after test |
-| Fallback: missing file | Temporarily move the private story JSON elsewhere; refresh | Text unavailable, not a server crash. Restore the file |
-| Link-only | Open Stories Index or Parvas Index | Opens external source; no in-app position tracking |
+| Fallback: review | Temporarily set private JSON `review_status` to `pending`; refresh | Private pending text never displayed as approved. An independently fetched unreviewed preview may appear with a warning. Restore to `approved` after test |
+| Fallback: missing file | Temporarily move private story JSON elsewhere; refresh | App safely falls back to a separate unreviewed website preview if available. Restore reviewed file |
+| Browse | Open Stories Index or Parvas Index | Lists chapters inside the app; external navigation only when Original link clicked |
 | Service worker | Visit `/sw.js`, DevTools > Application > Service Workers | Registration can be inspected on localhost; **story pages are not offline-cached** |
 
-**Limits:** PWA installation on an actual Android phone and the EC2 deployment require HTTPS and remain **separate, unverified** tests. Reading state uses browser `localStorage` only. A fresh browser profile or cleared site data loses it. A phone cannot visit your PC's `127.0.0.1` address. There is **no general runtime fetch or server cache for every Mahabharata chapter yet**.
+**Limits:** PWA installation on an actual Android phone and the EC2 deployment require HTTPS and remain **separate, unverified** tests. Reading state uses browser `localStorage` only. A fresh browser profile or cleared site data loses it. A phone cannot visit your PC's `127.0.0.1` address. Selected compatible HTML stories/chapters now use private server caching by default; not all chapter/PDF layouts are supported.
 
 ## 5. Leave the feature branch clean
 

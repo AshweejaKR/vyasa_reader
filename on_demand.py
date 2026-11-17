@@ -1,4 +1,4 @@
-"""Opt-in private, click-only source indexes and chapter cache (never public Git)."""
+"""Default in-app reader: fetch selected website chapters into private local cache."""
 import hashlib
 import json
 import os
@@ -16,10 +16,6 @@ INDEX = {
     "parvas": "https://www.vyasaonline.com/translations10/",
 }
 LOCK = threading.Lock()
-
-
-def enabled():
-    return os.environ.get("VYASA_ON_DEMAND") == "1"
 
 
 def _id(url):
@@ -88,7 +84,8 @@ def navigation(section, parent=None):
         if not address or address == url or address in seen:
             continue
         if kind == "parva" and not (
-                "parva" in title.casefold() or "harivamsha" in title.casefold()):
+                "parva" in title.casefold() or "harivamsha" in title.casefold()
+                or "ಪರ್ವ" in title or "ಹರಿವಂಶ" in title):
             continue
         if parent is not None and address in other_parvas:
             continue

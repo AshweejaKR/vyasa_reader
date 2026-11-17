@@ -27,9 +27,9 @@ A one-time website-only importer can generate private, review-pending JSON witho
 5. Offline caching is permitted for this personal app, but opt into bounded same-origin text caching only after implementing clear versioning, cache limits, and invalidation. Existing service worker still caches app shell only.
 6. Keep original correspondence private. Record any new restrictions or withdrawal here and honor removal requests.
 
-## Private on-demand previews (2026-11-17)
+## Default in-app reading (2026-11-17)
 
-The opt-in source-only implementation fetches only a user-selected VyasaOnline HTML index or chapter, caches plain text privately on the owner's server, and marks newly fetched text **auto_unreviewed**. It never changes the public catalog to `approved` and continues to display an unreviewed notice until separately reviewed. It must be enabled explicitly with password protection over HTTPS for personal use; no public anonymous content-proxy operation or unrestricted bulk retrieval is approved. See `docs/ON_DEMAND.md`. Source/live parser, Android, and EC2 behavior are not verified.
+The reader now tries to display only a **user-selected** VyasaOnline HTML story/chapter inside the app, caching its plain text privately and marking it `auto_unreviewed`. A separate Original link lets the reader choose to leave the app. No auto-approval of the public catalog, background crawling, or unreviewed translation publication in Git. A password is **not required** for local personal use, but optional paired HTTP Basic credentials may protect private HTTPS deployments. The permission reply authorizes the described personal, non-commercial app; it does **not** authorize open public redistribution. Do not expose the anonymous service to a public audience without additional rights and protections. See `docs/ON_DEMAND.md`; runtime/Android/EC2 unverified.
 
 ## Historical research
 

@@ -5,7 +5,7 @@
   <h2>{{ item.title }}</h2>
   <p class="credit">
     Source: {{ item.source_name or 'Unknown' }}{% if item.author %} &middot; Author: {{ item.author }}{% endif %}
-    {% if item.source_url %}&middot; <a href="{{ item.source_url }}" target="_blank" rel="noopener noreferrer">Original</a>{% endif %}
+    {% if item.source_url %}&middot; <a href="{{ item.source_url }}" target="_blank" rel="noopener noreferrer">View original on VyasaOnline</a>{% endif %}
   </p>
 
   <div class="tools">
@@ -31,8 +31,7 @@
   {% elif item.content_status in ('approved', 'preview') %}
     <p class="notice" role="alert">This text is not available right now.</p>
   {% else %}
-    <p>This item is not shown in the app. Read it on the original site.</p>
-    <p class="notice">Your reading position is not saved for this item. The app cannot track where you stop on the original website.</p>
+    <p class="notice" role="alert">This chapter is unavailable in the reader. You can choose the original website link if needed.</p>
   {% endif %}
 
   {% if item.source_url and not content %}
