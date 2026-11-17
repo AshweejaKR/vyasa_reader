@@ -1,6 +1,6 @@
 # Vyasa Reader
 
-**Status:** Phases 00–06 written, including PWA PNG icons; runtime, Android, and deployment not verified. Written permission for the described personal, non-commercial website-text use received 2026-11-10. Existing catalog remains link-only except the fictional demo until selected translations are imported.
+**Status:** Phases 00–06 written, including PWA PNG icons; runtime, Android, and deployment not verified. Written permission for personal, non-commercial website-text use received 2026-11-10. The public catalog remains link-only except the fictional demo. One six-paragraph Kannada story has been reviewed and approved **in a separate private installation overlay**, not committed or deployed.
 
 Small, independent Kannada Mahabharata reader for **Android and PC**, intended to run on an AWS EC2 instance. Goal: comfortable reading and resume from where you stopped.
 
@@ -64,11 +64,11 @@ Limits: positions and bookmarks live only in this browser on this device. Cleari
 ## Content rules (Phase 02)
 
 - `content_status` is `link_only` or `approved`. `approved` items load a JSON file from `data/content/` (blocks of `heading`, `paragraph`, `verse`, each with a stable `id`).
-- Only the fictional demo is currently `approved`. A one-story manual/direct HTTPS importer is available at `scripts/import_selected_story.py` for `aruni-uddalaka`; it writes **private, review-pending** JSON. The website story remains `link_only` until separately reviewed and privately deployed. Flask refuses to render imported website text without `review_status: "approved"` even if the catalog status was changed accidentally; see `docs/FIRST_IMPORT.md`.
+- Only the fictional demo is currently `approved` **in the public catalog**. A six-paragraph `aruni-uddalaka` translation has been source-reviewed and placed in an **approved, private overlay** with a matching private catalog. The overlay is not deployed; the public catalog remains `link_only`. The one-story importer remains available for later manual re-import, which starts at `review_status: pending`. Flask refuses to render imported text without `review_status: "approved"`; see `docs/FIRST_IMPORT.md`.
 
 ## Next work
 
-A first six-paragraph Kannada story draft for `aruni-uddalaka` was prepared privately outside GitHub on 2026-11-15. It has not been approved, installed, or published; the public catalog remains `link_only`. Follow `docs/FIRST_IMPORT.md` for its source hash and private review, or for an independent **single one-time website fetch** (`--fetch`) or private text-file import, paragraph review, and approval. The Aruni importer now fails closed unless exactly six paragraphs begin and end with the expected original-story text; this is a source-structure guard, **not** proof of textual accuracy. Reference the author's reader at https://vyasaonline.github.io/mahAbhArata/ and its GitHub `content` branch at https://github.com/vyasaonline/mahAbhArata/tree/content only for chapter cross-checking, not automatic replacement of website text. No content has been imported or deployed by this change. Revision handling and offline text caching remain separate work.
+A six-paragraph Kannada story draft for `aruni-uddalaka` was prepared privately on 2026-11-15 and compared with the rendered original source on 2026-11-17. All six normalized story paragraphs matched; an approved private JSON and private catalog overlay were prepared **outside GitHub**. The overlay has **not** been installed or tested in the app. The public catalog remains `link_only`. See `docs/FIRST_IMPORT.md` for source hash, private overlay setup, and independent re-import instructions. The Aruni importer now fails closed unless exactly six paragraphs begin and end with the expected original-story text; this is a source-structure guard, **not** proof of textual accuracy. Reference the author's reader at https://vyasaonline.github.io/mahAbhArata/ and its GitHub `content` branch at https://github.com/vyasaonline/mahAbhArata/tree/content only for chapter cross-checking, not automatic replacement of website text. No content has been imported or deployed by this change. Revision handling and offline text caching remain separate work.
 
 ## Project documents
 

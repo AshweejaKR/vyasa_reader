@@ -1,5 +1,12 @@
 # Development Log
 
+## 2026-11-17 — First Kannada story reviewed and approved privately (same unmerged branch)
+- Scope: `aruni-uddalaka` text review and private reading enablement package only.
+- Summary: Reopened the private six-paragraph draft, compared each paragraph with the visible original story rendered on VyasaOnline (six exact matches after link markup removal and space normalization), checked attribution, original URL, stable IDs, and SHA-256. Prepared separate downloadable **private** ZIP with `review_status: approved` JSON and catalog overlay setting `content_status: approved`. No copyrighted text or approved public-catalog entry committed to GitHub.
+- SHA-256: `a448285a02fb0b30e7ba00322afbc041dbeda16bba30331a3dbfeb81acbb040c` (text unchanged).
+- Modified documentation: `README.md`, `PLAN.md`, `docs/FIRST_IMPORT.md`, `docs/PROGRESS.md`, `docs/DEVELOPMENT_LOG.md`.
+- Verification: six private draft paragraphs compared with manually transcribed rendered source; approved private JSON and catalog parsed/structurally checked. **Raw HTML not byte-compared; repository importer not run; Flask, Android, HTTPS and EC2 runtime tests not run; private overlay not installed or deployed**. Branch remains open pending final review.
+
 ## 2026-11-15 — Prepared private Kannada story draft (same unmerged branch)
 - Scope: First actual website-text content candidate for `aruni-uddalaka` only.
 - Summary: Retrieved the original VyasaOnline story and assembled six Kannada narrative paragraphs in `data/content/aruni-uddalaka.json` with original URL, B.M. Ramesh attribution, chapter cross-reference, stable `p0001`–`p0006` IDs, permission date, SHA-256, and `review_status: pending`. Provided the JSON separately as a private downloadable package. No text was added to GitHub and the public catalog remains `link_only`. The JSON was manually assembled from the retrieved page text, **not** produced by executing the repo importer.

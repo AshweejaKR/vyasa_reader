@@ -1,6 +1,6 @@
 # PLAN.md — Vyasa Reader
 
-**Status:** Phases 00–06 written; runtime and deployment unverified. Permission recorded 2026-11-10. Direct, one-story website-fetch update merged to `main` in PR #4 (2026-11-15). First-story review enforcement is on `fix/first-story-review-gate` pending review/merge; actual website-text import and manual approval still pending.
+**Status:** Phases 00–06 written; runtime and deployment unverified. Permission recorded 2026-11-10. Direct one-story website-fetch update merged to `main` in PR #4 (2026-11-15). First-story approval enforcement is on `fix/first-story-review-gate` awaiting final review/merge. Six-paragraph `aruni-uddalaka` text was separately reviewed and an approved PRIVATE overlay prepared on 2026-11-17; deployment and actual app behavior remain unverified.
 
 ## Goal
 
