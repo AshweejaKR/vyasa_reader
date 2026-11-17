@@ -66,6 +66,10 @@ Limits: positions and bookmarks live only in this browser on this device. Cleari
 - `content_status` is `link_only` or `approved`. `approved` items load a JSON file from `data/content/` (blocks of `heading`, `paragraph`, `verse`, each with a stable `id`).
 - Only the fictional demo is currently `approved` **in the public catalog**. A six-paragraph `aruni-uddalaka` translation has been source-reviewed and placed in an **approved, private overlay** with a matching private catalog. The overlay is not deployed; the public catalog remains `link_only`. The one-story importer remains available for later manual re-import, which starts at `review_status: pending`. Flask refuses to render imported text without `review_status: "approved"`; see `docs/FIRST_IMPORT.md`.
 
+## Local verification (not run)
+
+Use [`docs/LOCAL_VERIFICATION.md`](docs/LOCAL_VERIFICATION.md) to clone the unmerged feature branch, run Flask locally (Windows-first steps), install the approved Kannada story **privately** without committing it, and check reading, bookmarks, resume, and the review gate. The default public checkout still shows `aruni-uddalaka` as `link_only`. No automatic per-chapter runtime fetch or persistent server cache is implemented.
+
 ## Next work
 
 A six-paragraph Kannada story draft for `aruni-uddalaka` was prepared privately on 2026-11-15 and compared with the rendered original source on 2026-11-17. All six normalized story paragraphs matched; an approved private JSON and private catalog overlay were prepared **outside GitHub**. The overlay has **not** been installed or tested in the app. The public catalog remains `link_only`. See `docs/FIRST_IMPORT.md` for source hash, private overlay setup, and independent re-import instructions. The Aruni importer now fails closed unless exactly six paragraphs begin and end with the expected original-story text; this is a source-structure guard, **not** proof of textual accuracy. Reference the author's reader at https://vyasaonline.github.io/mahAbhArata/ and its GitHub `content` branch at https://github.com/vyasaonline/mahAbhArata/tree/content only for chapter cross-checking, not automatic replacement of website text. No content has been imported or deployed by this change. Revision handling and offline text caching remain separate work.
@@ -78,6 +82,7 @@ A six-paragraph Kannada story draft for `aruni-uddalaka` was prepared privately 
 | `PLAN.md` | MVP scope, phase boundaries, data behavior, manual acceptance |
 | `docs/PROGRESS.md` | **Required by `CLAUDE.md`** to know which phase is pending or complete |
 | `docs/FIRST_IMPORT.md` | One-story website import and GitHub chapter cross-reference; manual review required |
+| `docs/LOCAL_VERIFICATION.md` | Windows/Linux local startup, private overlay install, manual checks, and safe cleanup |
 | `SOURCES_AND_RIGHTS.md` | Original website links and permission questions |
 | `prompts/PHASE_XX_*.md` | Existing phase-specific Claude Code instructions |
 | `docs/PWA.md` | PWA install, caching scope, and troubleshooting |

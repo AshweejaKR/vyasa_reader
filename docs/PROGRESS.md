@@ -27,6 +27,7 @@ Rules: Change only the requested phase after approval. Mark complete only after 
 - [x] Prepared private six-paragraph `aruni-uddalaka.json` from retrieved VyasaOnline text with source URL, attribution, import time, and SHA-256 (2026-11-15); repo importer not executed.
 - [x] Compared six of six paragraphs with manually captured plain text of the rendered original webpage; all matched after removing link formatting/normalizing spaces. Approved content JSON and private catalog overlay prepared separately on 2026-11-17; **not committed to Git**.
 - [x] Reviewed and approved first story **in private overlay only**; public catalog intentionally stays `link_only`.
+- [x] Published Windows-first local setup and verification instructions in `docs/LOCAL_VERIFICATION.md` (documentation only, 2026-11-17).
 - [ ] Install approved private JSON plus private catalog overlay into a checkout and confirm `/read/aruni-uddalaka` displays correctly.
 - [ ] Manual reader/resume/bookmark checks and handling of revised paragraph anchors.
 - [ ] Manual revision refresh for Adi Parva, additional recensions, and Shastra Samgraha when available.

@@ -1,5 +1,11 @@
 # Development Log
 
+## 2026-11-17 — Local verification instructions (same unmerged feature branch)
+- Scope: Document how to run the existing Flask app and verify the privately approved first Kannada story without exposing it in public Git.
+- Summary: Added Windows PowerShell and Linux/macOS clone/setup commands, expected route checks, private overlay installation, Kannada/attribution/bookmark/auto-resume test checklist, review-status and missing-content checks, PWA scope limits, and instructions to restore the public catalog. Linked the guide from README and first-import docs. No runtime chapter fetcher, server text cache, or new content import implemented.
+- Added: `docs/LOCAL_VERIFICATION.md`. Modified: `README.md`, `docs/FIRST_IMPORT.md`, `docs/PROGRESS.md`, `docs/DEVELOPMENT_LOG.md`.
+- Verification: GitHub file/source inspection only. No terminal commands, app runs, tests, Android, or EC2 deployment executed. Approved Kannada text remains outside public GitHub.
+
 ## 2026-11-17 — First Kannada story reviewed and approved privately (same unmerged branch)
 - Scope: `aruni-uddalaka` text review and private reading enablement package only.
 - Summary: Reopened the private six-paragraph draft, compared each paragraph with the visible original story rendered on VyasaOnline (six exact matches after link markup removal and space normalization), checked attribution, original URL, stable IDs, and SHA-256. Prepared separate downloadable **private** ZIP with `review_status: approved` JSON and catalog overlay setting `content_status: approved`. No copyrighted text or approved public-catalog entry committed to GitHub.
