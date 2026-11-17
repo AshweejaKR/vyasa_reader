@@ -1,6 +1,6 @@
 # Vyasa Reader — Local run and verification (first Kannada story)
 
-**Status:** Instructions prepared, **not executed**. This guide applies to the public source on branch `fix/first-story-review-gate` plus the **separate private approved Aruni overlay** delivered in ChatGPT on 2026-11-17. The overlay is **not** in the GitHub repository.
+**Status:** Instructions prepared, **not executed**. This guide covers the manually approved Aruni overlay delivered privately in ChatGPT. The branch now also offers **opt-in on-demand previews** without that ZIP; see [`ON_DEMAND.md`](ON_DEMAND.md). Both workflows remain untested. Private overlay is not in Git.
 
 ## 1. Clone the feature branch (Windows PowerShell)
 
@@ -27,6 +27,10 @@ git switch --track origin/fix/first-story-review-gate
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
 ```
+
+## Optional: automatic on-demand chapter previews
+
+To open stories/chapters without copying private JSON or editing the public catalog, use the separate [`ON_DEMAND.md`](ON_DEMAND.md) guide. Set the three private environment variables, authenticate in the browser, browse the source index and select a chapter. It will fetch once and privately cache the selected HTML text if supported. Automatically fetched previews are **not** editorially approved; leave the public catalog `link_only`.
 
 ## 2. Baseline without private text
 

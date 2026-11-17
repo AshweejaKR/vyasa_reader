@@ -10,7 +10,7 @@
 
   <div class="tools">
     <a href="{{ url_for('parvas' if item.collection == 'parvas' else 'stories') }}">&larr; Back to library</a>
-    {% if item.content_status == 'approved' and content %}
+    {% if item.content_status in ('approved', 'preview') and content %}
     <button type="button" id="font-dec" aria-label="Smaller text">A&minus;</button>
     <button type="button" id="font-inc" aria-label="Larger text">A+</button>
     <button type="button" id="theme-toggle" aria-label="Switch between light and dark mode">Dark mode</button>
@@ -18,7 +18,8 @@
     {% endif %}
   </div>
 
-  {% if item.content_status == 'approved' and content %}
+  {% if item.content_status in ('approved', 'preview') and content %}
+    {% if content.auto_preview %}<p class="notice">Automatically fetched for private reading. Not manually reviewed. Check the linked original if text seems incomplete.</p>{% endif %}
     {% if content.demo %}<p class="notice">Demo: fictional text written for testing the reader. It is not part of the Mahabharata.</p>{% endif %}
     <div class="reader" lang="kn" data-item="{{ item.id }}">
     {% for block in content.blocks %}
@@ -27,7 +28,7 @@
       {% else %}<p id="{{ block.id }}">{{ block.text }}</p>{% endif %}
     {% endfor %}
     </div>
-  {% elif item.content_status == 'approved' %}
+  {% elif item.content_status in ('approved', 'preview') %}
     <p class="notice" role="alert">This text is not available right now.</p>
   {% else %}
     <p>This item is not shown in the app. Read it on the original site.</p>

@@ -1,6 +1,6 @@
 # PLAN.md — Vyasa Reader
 
-**Status:** Phases 00–06 written; runtime and deployment unverified. Permission recorded 2026-11-10. Direct one-story website-fetch update merged to `main` in PR #4 (2026-11-15). First-story approval enforcement is on `fix/first-story-review-gate` awaiting final review/merge. Six-paragraph `aruni-uddalaka` text was separately reviewed and an approved PRIVATE overlay prepared on 2026-11-17; deployment and actual app behavior remain unverified.
+**Status:** Phases 00–06 written; runtime and deployment unverified. Permission recorded 2026-11-10. Direct one-story website-fetch update merged to `main` in PR #4 (2026-11-15). First-story approval enforcement is on `fix/first-story-review-gate` awaiting final review/merge. Six-paragraph `aruni-uddalaka` text was separately reviewed and an approved PRIVATE overlay prepared on 2026-11-17. An opt-in private on-demand chapter preview/cache is now coded on this same branch, but not run, deployed, or Android-verified.
 
 ## Goal
 
@@ -14,7 +14,7 @@ Build an independent, Android-first Kannada Mahabharata reader that also works o
 - Install as an Android PWA over HTTPS; use a home-screen icon and basic offline app shell.
 - Work on mobile and desktop. Progress is **device/browser-specific**, not synchronized.
 
-**Out of scope:** Database, login, cloud sync, React, bulk scraping, AI features, analytics, unrelated commercial redistribution, and third-party media without separate rights.
+**Out of scope:** Database, user accounts/cloud sync, React, bulk scraping, AI features, analytics, unrelated commercial redistribution, and third-party media without separate rights. The opt-in personal on-demand preview uses simple HTTP Basic access protection, not user accounts.
 
 ## Content-rights gate
 
@@ -54,6 +54,8 @@ Build an independent, Android-first Kannada Mahabharata reader that also works o
 4. **Revisions:** Support manual refresh and source version metadata for revised Adi Parva, additional recension material, and Shastra Samgraha when published. Avoid unattended scraping; keep a rollback path.
 5. **Offline content:** Extend app-shell-only caching to selected approved same-origin text only after bounded storage, invalidation, versioning, and removal handling are designed and approved.
 6. **PWA/deployment:** Supply PNG icons and manually verify HTTPS installation, Android reopen, offline behavior, and EC2 security. No deployment implied by document updates.
+
+An opt-in private, user-initiated on-demand HTML preview/cache is implemented as **source only** (2026-11-17); it does not auto-approve catalog items, crawl all chapters, or replace the independent manual-review path. See `docs/ON_DEMAND.md`. Runtime behavior remains unverified.
 
 These are proposed maintenance/integration tasks, **not completed phases**. Keep the existing simple Flask + JSON architecture. Work on only one explicitly requested task at a time.
 

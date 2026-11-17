@@ -183,3 +183,6 @@ cython_debug/
 # Private selected VyasaOnline translation; do not publish via public Git
 data/content/aruni-uddalaka.json
 private-story.txt
+
+# Private per-chapter fetch cache and source metadata
+data/runtime/

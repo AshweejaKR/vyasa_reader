@@ -5,6 +5,7 @@
 {% if error %}<p class="notice" role="alert">{{ error }}</p>{% endif %}
 <section aria-labelledby="list-h">
   <h2 id="list-h">{{ heading }}</h2>
-  {{ entries(items) }}
+  {{ entries(items, on_demand) }}
+  {% if on_demand %}<p><a href="{{ url_for('source_browse', section=collection) }}">Browse {{ heading }} from VyasaOnline</a></p>{% endif %}
 </section>
 {% endblock %}

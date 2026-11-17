@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}VyasaOnline {{ section }} - Vyasa Reader{% endblock %}
+{% block content %}
+<section aria-labelledby="source-h">
+  <h2 id="source-h">{% if parent %}Chapters{% elif section == 'stories' %}Kannada Stories{% else %}Maha Parvas{% endif %} (on demand)</h2>
+  <p class="notice">Pages fetched only when selected, then saved privately on this server. Automatically fetched text is not manually verified. PDF and unsupported pages open on the original site.</p>
+  {% if error %}<p class="notice" role="alert">{{ error }}</p>{% endif %}
+  {% if entries %}
+  <ul class="list">
+    {% for entry in entries %}
+    <li>
+      {% if entry.kind == 'parva' %}
+      <a href="{{ url_for('source_browse', section='parvas', parent=entry.id) }}">{{ entry.title }}</a>
+      <small>Browse chapters</small>
+      {% else %}
+      <a href="{{ url_for('read', item_id=entry.id) }}">{{ entry.title }}</a>
+      <small>Read (fetch one page when needed)</small>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% elif not error %}<p class="empty">No compatible links found.</p>{% endif %}
+  <p><a href="{{ origin }}" target="_blank" rel="noopener noreferrer">Open original index</a></p>
+  <p><a href="{{ url_for('source_browse', section=section) }}">Back to {{ section }}</a></p>
+</section>
+{% endblock %}

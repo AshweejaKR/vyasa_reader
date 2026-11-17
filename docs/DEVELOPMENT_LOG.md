@@ -1,5 +1,12 @@
 # Development Log
 
+## 2026-11-17 — Opt-in on-demand Kannada HTML chapter loading (same unmerged feature branch)
+- Scope: One expressly requested, click-to-fetch website chapter feature for the personal app. No bulk crawling, source-revision overwrites, or automatic catalog approval.
+- Summary: Added fixed-host HTTPS WordPress paragraph/index parser and a private metadata/chapter JSON cache under ignored `data/runtime/`; dynamic story index, Parva-to-chapter navigation, curated story fallback, original URL/translator attribution, explicit unreviewed reader-preview notice, bookmarks/resume lookup, per-worker 20-fetch/hour quota, and opt-in HTTP Basic protection for the personal app. PDF/GitHub/third-party content excluded; previews do not change catalog approval.
+- Added: `source_html.py`, `on_demand.py`, `templates/source_list.html`, `docs/ON_DEMAND.md`.
+- Modified: `app.py`, `.gitignore`, `templates/home.html`, `templates/list.html`, `templates/_items.html`, `templates/read.html`, `README.md`, `PLAN.md`, `docs/PROGRESS.md`, `docs/DEVELOPMENT_LOG.md`, `docs/LOCAL_VERIFICATION.md`, `docs/FIRST_IMPORT.md`, `docs/PWA.md`, `docs/CONTENT_ACCESS_DECISION.md`.
+- Verification: Site indexes and example story/chapter pages inspected via web; GitHub source changes reviewed statically only. Flask fetch/parser behavior, runtime, security, Android and EC2 **not run / not verified**. No private translation committed.
+
 ## 2026-11-17 — Local verification instructions (same unmerged feature branch)
 - Scope: Document how to run the existing Flask app and verify the privately approved first Kannada story without exposing it in public Git.
 - Summary: Added Windows PowerShell and Linux/macOS clone/setup commands, expected route checks, private overlay installation, Kannada/attribution/bookmark/auto-resume test checklist, review-status and missing-content checks, PWA scope limits, and instructions to restore the public catalog. Linked the guide from README and first-import docs. No runtime chapter fetcher, server text cache, or new content import implemented.

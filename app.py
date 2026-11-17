@@ -1,8 +1,14 @@
 import json
+import os
 import re
+import secrets
 from pathlib import Path
 
-from flask import Flask, abort, render_template, send_from_directory
+from flask import Flask, Response, abort, redirect, render_template, request, send_from_directory, url_for
+
+from on_demand import (INDEX, cached_titles, enabled, item as source_item, load_chapter,
+                       navigation, neighbors, reader_item, register_direct, registry)
+from source_html import SourceError
 
 BASE_DIR = Path(__file__).resolve().parent
 CATALOG_PATH = BASE_DIR / "data" / "catalog.json"
@@ -13,6 +19,30 @@ BLOCK_TYPES = ("heading", "paragraph", "verse")
 SAFE_ID = re.compile(r"^[A-Za-z0-9_-]{1,64}$")
 
 app = Flask(__name__)
+
+
+@app.before_request
+def private_source_access():
+    if not enabled() or request.path == "/health":
+        return None
+    username = os.environ.get("VYASA_PRIVATE_USER", "")
+    password = os.environ.get("VYASA_PRIVATE_PASSWORD", "")
+    if not username or not password:
+        return Response("Private on-demand credentials required.", status=503)
+    auth = request.authorization
+    if not auth or not (secrets.compare_digest(auth.username or "", username)
+                        and secrets.compare_digest(auth.password or "", password)):
+        return Response("Authentication required.", status=401, headers={
+            "WWW-Authenticate": 'Basic realm="Vyasa Reader"'})
+    return None
+
+
+@app.after_request
+def prevent_private_html_caching(response):
+    if enabled() and response.mimetype == "text/html":
+        response.headers["Cache-Control"] = "private, no-store"
+        response.headers["Vary"] = "Authorization"
+    return response
 
 
 def load_catalog():
@@ -82,7 +112,8 @@ def load_content(item):
 def list_page(collection, heading):
     items, error = load_catalog()
     items = [i for i in items if i["collection"] == collection]
-    return render_template("list.html", heading=heading, items=items, error=error)
+    return render_template("list.html", heading=heading, items=items, error=error,
+                           on_demand=enabled(), collection=collection)
 
 
 @app.route("/")
@@ -91,7 +122,10 @@ def home():
     stories = [i for i in items if i["collection"] == "stories"]
     parvas = [i for i in items if i["collection"] == "parvas"]
     approved = {i["id"]: i["title"] for i in items if i["content_status"] == "approved"}
-    return render_template("home.html", stories=stories, parvas=parvas, approved=approved, error=error)
+    if enabled():
+        approved.update(cached_titles())
+    return render_template("home.html", stories=stories, parvas=parvas, approved=approved,
+                           on_demand=enabled(), error=error)
 
 
 @app.route("/stories")
@@ -104,8 +138,37 @@ def parvas():
     return list_page("parvas", "Parvas")
 
 
+@app.route("/source/<section>")
+@app.route("/source/<section>/<parent>")
+def source_browse(section, parent=None):
+    if not enabled() or section not in INDEX:
+        abort(404)
+    if parent is not None and parent not in registry():
+        abort(404)
+    error = None
+    try:
+        entries = navigation(section, parent)
+    except SourceError as exc:
+        entries, error = [], str(exc)
+    if entries is None:
+        abort(404)
+    origin = registry()[parent]["url"] if parent else INDEX[section]
+    return render_template("source_list.html", section=section, parent=parent,
+                           entries=entries, origin=origin, error=error)
+
+
 @app.route("/read/<item_id>")
 def read(item_id):
+    if enabled():
+        record = source_item(item_id)
+        if record:
+            try:
+                content = load_chapter(record)
+            except SourceError:
+                content = None
+            prev_item, next_item = neighbors(record)
+            return render_template("read.html", item=reader_item(record),
+                                   content=content, prev_item=prev_item, next_item=next_item)
     items, _ = load_catalog()
     same = []
     for item in items:
@@ -115,6 +178,15 @@ def read(item_id):
             break
     else:
         abort(404)
+    if enabled():
+        if current["id"] in ("stories-index", "parvas-index"):
+            return redirect(url_for("source_browse",
+                                    section="stories" if current["id"] == "stories-index"
+                                    else "parvas"))
+        if current["content_status"] == "link_only" and current.get("source_url"):
+            dynamic_id = register_direct(current)
+            if dynamic_id:
+                return redirect(url_for("read", item_id=dynamic_id))
     pos = same.index(current)
     prev_item = same[pos - 1] if pos > 0 else None
     next_item = same[pos + 1] if pos + 1 < len(same) else None

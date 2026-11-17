@@ -1,6 +1,6 @@
 # Vyasa Reader
 
-**Status:** Phases 00–06 written, including PWA PNG icons; runtime, Android, and deployment not verified. Written permission for personal, non-commercial website-text use received 2026-11-10. The public catalog remains link-only except the fictional demo. One six-paragraph Kannada story has been reviewed and approved **in a separate private installation overlay**, not committed or deployed.
+**Status:** Phases 00–06 written, including PWA PNG icons; runtime, Android, and deployment not verified. Written permission for personal, non-commercial website-text use received 2026-11-10. The public catalog remains link-only except the fictional demo. One six-paragraph Kannada story has been reviewed and approved **in a separate private installation overlay**, not committed or deployed. Opt-in, password-protected on-demand source loading is now written on the unmerged feature branch, but not run or verified.
 
 Small, independent Kannada Mahabharata reader for **Android and PC**, intended to run on an AWS EC2 instance. Goal: comfortable reading and resume from where you stopped.
 
@@ -8,7 +8,7 @@ Small, independent Kannada Mahabharata reader for **Android and PC**, intended t
 
 - Open the installed app icon; resume the last permitted **in-app** story near its saved paragraph.
 - Browse Stories or Parvas/Chapters. Use Previous/Next, bookmarks, larger text, and dark/light mode.
-- Open entries still marked `link_only` on [VyasaOnline](https://www.vyasaonline.com/). Website-text permission is recorded, but entries are not imported automatically.
+- By default, link-only entries open on [VyasaOnline](https://www.vyasaonline.com/). With **private on-demand mode explicitly enabled**, choose a story/Parva/chapter in the app to fetch and privately cache only that selected HTML page; automatically extracted text is visibly marked unreviewed.
 - Same-browser/device progress only; clearing site data or using private browsing can remove it. **Exact resume does not work reliably inside external VyasaOnline pages.**
 
 ## Design choices
@@ -68,7 +68,7 @@ Limits: positions and bookmarks live only in this browser on this device. Cleari
 
 ## Local verification (not run)
 
-Use [`docs/LOCAL_VERIFICATION.md`](docs/LOCAL_VERIFICATION.md) to clone the unmerged feature branch, run Flask locally (Windows-first steps), install the approved Kannada story **privately** without committing it, and check reading, bookmarks, resume, and the review gate. The default public checkout still shows `aruni-uddalaka` as `link_only`. No automatic per-chapter runtime fetch or persistent server cache is implemented.
+Use [`docs/LOCAL_VERIFICATION.md`](docs/LOCAL_VERIFICATION.md) to clone the unmerged feature branch, run Flask locally, and verify the approved story privately. **New:** [`docs/ON_DEMAND.md`](docs/ON_DEMAND.md) explains opt-in HTTP Basic authentication, one-page-at-a-time Kannada story/Parva/chapter loading, local server caching under ignored `data/runtime/`, fetch limits, and manual checks. The default public checkout still shows `aruni-uddalaka` as `link_only` until private mode or the separately approved overlay is installed. On-demand behavior has not been executed or tested.
 
 ## Next work
 
@@ -83,6 +83,7 @@ A six-paragraph Kannada story draft for `aruni-uddalaka` was prepared privately 
 | `docs/PROGRESS.md` | **Required by `CLAUDE.md`** to know which phase is pending or complete |
 | `docs/FIRST_IMPORT.md` | One-story website import and GitHub chapter cross-reference; manual review required |
 | `docs/LOCAL_VERIFICATION.md` | Windows/Linux local startup, private overlay install, manual checks, and safe cleanup |
+| `docs/ON_DEMAND.md` | Private on-demand chapter loading, cache/auth controls, limitations, and manual verification |
 | `SOURCES_AND_RIGHTS.md` | Original website links and permission questions |
 | `prompts/PHASE_XX_*.md` | Existing phase-specific Claude Code instructions |
 | `docs/PWA.md` | PWA install, caching scope, and troubleshooting |
@@ -123,4 +124,4 @@ See `PLAN.md` for specific deliverables and acceptance criteria.
 
 ## What is not promised
 
-The author's written permission covers the described personal, non-commercial app use of website text, **not** a blanket open-source license. Existing `link_only` items still open externally and cannot resume precisely. See `docs/CONTENT_ACCESS_DECISION.md` and `PLAN.md` for scoped import and future revision handling.
+The author's written permission covers the described personal, non-commercial app use of website text, **not** a blanket open-source license. With on-demand mode **disabled**, existing `link_only` items still open externally and cannot resume precisely. With private mode enabled, selected supported HTML pages can be previewed in app and resumed after caching; not every source page is compatible. See `docs/CONTENT_ACCESS_DECISION.md` and `PLAN.md` for scoped import and future revision handling.

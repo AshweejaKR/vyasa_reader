@@ -1,7 +1,7 @@
 # Phase Progress — Vyasa Reader
 
 Current phase: **All planned phases (00–06) written**
-Current status: **Permission recorded; direct website-fetch support merged to main (PR #4); imported-text review guard and docs on `fix/first-story-review-gate` (not merged). Six-paragraph `aruni-uddalaka` content reviewed against rendered source and approved in a PRIVATE overlay (2026-11-17); private app installation, runtime, Android and EC2 verification pending**
+Current status: **Permission recorded; on-demand private HTML chapter preview/cache implemented as source on `fix/first-story-review-gate` (not merged). Six-paragraph `aruni-uddalaka` approved overlay exists privately. Live fetching, local installation, Flask runtime, Android and EC2 behavior remain not run / unverified.**
 
 Note: Phase 01 was implemented before Phase 00; the sequence is now reconciled. Phase 00 originally used `link_only`; 2026-11-10 author permission now allows the described personal-app website-text use. Existing catalog items remain `link_only` until individually imported.
 
@@ -28,6 +28,7 @@ Rules: Change only the requested phase after approval. Mark complete only after 
 - [x] Compared six of six paragraphs with manually captured plain text of the rendered original webpage; all matched after removing link formatting/normalizing spaces. Approved content JSON and private catalog overlay prepared separately on 2026-11-17; **not committed to Git**.
 - [x] Reviewed and approved first story **in private overlay only**; public catalog intentionally stays `link_only`.
 - [x] Published Windows-first local setup and verification instructions in `docs/LOCAL_VERIFICATION.md` (documentation only, 2026-11-17).
+- [x] Implemented opt-in private HTML-index/story/chapter loading and ignored server cache with HTTP Basic access control, per-worker fetch quota, source validation, unreviewed preview notice, and reader resume support on the same branch (2026-11-17). **Static source only; runtime not run/verified**. See `docs/ON_DEMAND.md`.
 - [ ] Install approved private JSON plus private catalog overlay into a checkout and confirm `/read/aruni-uddalaka` displays correctly.
 - [ ] Manual reader/resume/bookmark checks and handling of revised paragraph anchors.
 - [ ] Manual revision refresh for Adi Parva, additional recensions, and Shastra Samgraha when available.

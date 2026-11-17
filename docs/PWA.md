@@ -3,7 +3,7 @@
 ## What is cached
 
 - App shell only: `/offline`, `static/style.css`, `static/reader.js`, `static/resume.js`, the manifest, and the SVG/192px/512px PNG icons (cache `vyasa-shell-v3` in `static/sw.js`).
-- Story pages, catalog pages, and any `data/content` text are **never** cached by the service worker. Link-only entries and VyasaOnline pages or PDFs are never fetched, cached, or proxied. Cross-origin requests are ignored.
+- Story pages, catalog pages, and any `data/content` text are **never** cached by the service worker. The optional, separately enabled Flask on-demand feature may fetch one permitted VyasaOnline HTML page into its **private server** cache, but the service worker never caches remote or translated pages, PDFs, or external links. Cross-origin service worker requests are ignored.
 - Offline, a page navigation shows `/offline` ("You are offline"). Saved position and bookmarks stay in localStorage but cannot open stories without a connection.
 - Written permission for limited offline caching in the described personal app was received 2026-11-10. **No text cache is implemented yet.** Consider bounded, versioned same-origin caching of reviewed approved items in a separate task; support cache invalidation/removal and do not cache third-party images or PDFs.
 

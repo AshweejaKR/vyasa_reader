@@ -18,11 +18,13 @@
 
 <section id="stories" aria-labelledby="stories-h">
   <h2 id="stories-h"><a href="{{ url_for('stories') }}">Stories</a></h2>
-  {{ entries(stories) }}
+  {{ entries(stories, on_demand) }}
+  {% if on_demand %}<p><a href="{{ url_for('source_browse', section='stories') }}">Browse all Kannada stories (fetch on demand)</a></p>{% endif %}
 </section>
 
 <section id="parvas" aria-labelledby="parvas-h">
   <h2 id="parvas-h"><a href="{{ url_for('parvas') }}">Parvas</a></h2>
-  {{ entries(parvas) }}
+  {{ entries(parvas, on_demand) }}
+  {% if on_demand %}<p><a href="{{ url_for('source_browse', section='parvas') }}">Browse Maha Parvas and chapters (fetch on demand)</a></p>{% endif %}
 </section>
 {% endblock %}

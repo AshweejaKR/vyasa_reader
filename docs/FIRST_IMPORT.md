@@ -28,6 +28,10 @@ Status: **private Kannada story JSON source-reviewed and marked `approved` on 20
 - Only after both approved files are installed together will `/read/aruni-uddalaka` be eligible to display six paragraph blocks, linked credit, reader controls, bookmarks and resume. This behavior is derived from source inspection only; Flask, Android, HTTPS and EC2 checks were **not run**.
 - Keep ZIP, text, and the private catalog overlay out of public Git. If source revisions change paragraph boundaries, re-import to another private file, review before approval, and preserve anchors as needed.
 
+## Separate optional on-demand preview
+
+The user-requested, password-protected on-demand mode (`docs/ON_DEMAND.md`) can privately fetch one supported VyasaOnline HTML page when clicked and cache it in ignored `data/runtime/`. Such content is **unreviewed preview**, never automatically marked `approved` in `data/catalog.json`. The previously reviewed `data/content/aruni-uddalaka.json` and its manual approval process remain independent and preferred if installed.
+
 ## Local testing
 
 For clone/setup instructions, installing the separate approved private overlay, expected routes, manual reader/bookmark/resume checks, and safely restoring the tracked public catalog after the test, use [`LOCAL_VERIFICATION.md`](LOCAL_VERIFICATION.md). These checks are instructions for the project owner; **not executed or verified here**. Keep the private JSON and private catalog changes off the public GitHub branch.
