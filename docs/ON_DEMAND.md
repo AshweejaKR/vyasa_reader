@@ -30,6 +30,12 @@ Linux/EC2: set the same three environment variables in the **private systemd ser
 
 To disable, unset `VYASA_ON_DEMAND` or set it to `0` and restart. Existing public demo and link-only behavior returns. Do not enable this feature on a public anonymous instance.
 
+## Fix for "Index structure unexpected; no chapters saved" (2026-11-17)
+
+The first parser extracted index links only when an `entry-content`/`post-content` container was detected and the anchor was inside `ol > li`. This could return zero links on real WordPress pages. It now reads ordered lists independently of that container (plus list links within the main article), excluding headers/nav/footers/asides. The original Kannada Stories index was separately checked and contains **59 linked stories**; the Translations index links to **18 Maha Parvas plus Harivamsha**, and Adi Parva contains many chapter links. Only page links you click are fetched; no bulk import was added.
+
+To retry: update your local checkout from the **same feature branch**, restart Flask, sign in to private mode, and choose **Browse all Kannada stories** or **Browse Maha Parvas and chapters**. Previous failed zero-link responses were not saved as chapter indexes, so normally nothing must be deleted. If it still fails, identify the exact page (**Stories**, **Maha Parvas**, or a selected Parva) and compare its **Open original index** link to the website; the source layout may have changed. Do not delete cached approved translations or the entire `data/runtime/` folder just to troubleshoot.
+
 ## Manual checks (not run)
 
 | Test | Steps | Expected |

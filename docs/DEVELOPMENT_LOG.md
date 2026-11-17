@@ -1,5 +1,13 @@
 # Development Log
 
+## 2026-11-17 — Repair empty VyasaOnline index extraction (same unmerged feature branch)
+- Scope: User-reported "Index structure unexpected; no chapters saved" in private on-demand source navigation.
+- Cause: The first parser required `entry-content`/`post-content` and `ol > li > a` simultaneously; real WordPress index list links may sit outside that narrow content wrapper or in different lists. A zero-link result triggered the error.
+- Fix: Recognize ordered-list anchors without requiring the WordPress content wrapper, plus unordered lists within article/main; exclude navigation/header/footer/aside tags; keep original verified 59-link Kannada Stories index. Root Parva list accepts Parva/Harivamsha entries; chapter lists exclude links back to other Maha Parvas. Error now explains unsupported indexes and points to the original site.
+- Sources checked: VyasaOnline Stories in Mahabharata (Kannada), Translations, Adi Parva, and Aruni webpage, 2026-11-17. No copyrighted content committed.
+- Modified: `source_html.py`, `on_demand.py`, `README.md`, `docs/ON_DEMAND.md`, `docs/PROGRESS.md`, `docs/DEVELOPMENT_LOG.md`.
+- Verification: Website structure and source-only static review; repository code, Flask, Windows runtime, Android, and EC2 **not executed or verified**.
+
 ## 2026-11-17 — Opt-in on-demand Kannada HTML chapter loading (same unmerged feature branch)
 - Scope: One expressly requested, click-to-fetch website chapter feature for the personal app. No bulk crawling, source-revision overwrites, or automatic catalog approval.
 - Summary: Added fixed-host HTTPS WordPress paragraph/index parser and a private metadata/chapter JSON cache under ignored `data/runtime/`; dynamic story index, Parva-to-chapter navigation, curated story fallback, original URL/translator attribution, explicit unreviewed reader-preview notice, bookmarks/resume lookup, per-worker 20-fetch/hour quota, and opt-in HTTP Basic protection for the personal app. PDF/GitHub/third-party content excluded; previews do not change catalog approval.

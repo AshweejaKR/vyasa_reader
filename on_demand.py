@@ -80,9 +80,17 @@ def navigation(section, parent=None):
     found = []
     seen = set()
     kind = "parva" if section == "parvas" and parent is None else "chapter"
+    parva_path = ROOT / ("index-" + _id(INDEX["parvas"]) + ".json")
+    other_parvas = {entry["url"] for entry in _read(parva_path, [])
+                    if isinstance(entry, dict) and isinstance(entry.get("url"), str)}
     for href, title in page.links:
         address = source_url(href, url)
         if not address or address == url or address in seen:
+            continue
+        if kind == "parva" and not (
+                "parva" in title.casefold() or "harivamsha" in title.casefold()):
+            continue
+        if parent is not None and address in other_parvas:
             continue
         seen.add(address)
         item_id = _id(address)
@@ -92,7 +100,8 @@ def navigation(section, parent=None):
             "kind": kind, "collection": section, "parent": parent or section,
         }
     if not 1 <= len(found) <= 500:
-        raise SourceError("Index structure unexpected; no chapters saved.")
+        raise SourceError("No supported chapter links found on this page. "
+                          "Use Open original index for PDF-only or unsupported pages.")
     _write(ROOT / "registry.json", records)
     _write(index_path, found)
     return found

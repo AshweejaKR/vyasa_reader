@@ -29,6 +29,7 @@ Rules: Change only the requested phase after approval. Mark complete only after 
 - [x] Reviewed and approved first story **in private overlay only**; public catalog intentionally stays `link_only`.
 - [x] Published Windows-first local setup and verification instructions in `docs/LOCAL_VERIFICATION.md` (documentation only, 2026-11-17).
 - [x] Implemented opt-in private HTML-index/story/chapter loading and ignored server cache with HTTP Basic access control, per-worker fetch quota, source validation, unreviewed preview notice, and reader resume support on the same branch (2026-11-17). **Static source only; runtime not run/verified**. See `docs/ON_DEMAND.md`.
+- [x] Source fix for reported empty-index error: broadened list link extraction outside specific WordPress post containers, preserved the verified 59-story index, and avoided redundant Parva footer links in chapter lists (2026-11-17). Source inspection/static review only; user runtime still unverified.
 - [ ] Install approved private JSON plus private catalog overlay into a checkout and confirm `/read/aruni-uddalaka` displays correctly.
 - [ ] Manual reader/resume/bookmark checks and handling of revised paragraph anchors.
 - [ ] Manual revision refresh for Adi Parva, additional recensions, and Shastra Samgraha when available.

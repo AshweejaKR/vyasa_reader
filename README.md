@@ -68,7 +68,7 @@ Limits: positions and bookmarks live only in this browser on this device. Cleari
 
 ## Local verification (not run)
 
-Use [`docs/LOCAL_VERIFICATION.md`](docs/LOCAL_VERIFICATION.md) to clone the unmerged feature branch, run Flask locally, and verify the approved story privately. **New:** [`docs/ON_DEMAND.md`](docs/ON_DEMAND.md) explains opt-in HTTP Basic authentication, one-page-at-a-time Kannada story/Parva/chapter loading, local server caching under ignored `data/runtime/`, fetch limits, and manual checks. The default public checkout still shows `aruni-uddalaka` as `link_only` until private mode or the separately approved overlay is installed. On-demand behavior has not been executed or tested.
+Use [`docs/LOCAL_VERIFICATION.md`](docs/LOCAL_VERIFICATION.md) to clone the unmerged feature branch, run Flask locally, and verify the approved story privately. **New:** [`docs/ON_DEMAND.md`](docs/ON_DEMAND.md) explains opt-in HTTP Basic authentication, one-page-at-a-time Kannada story/Parva/chapter loading, local server caching under ignored `data/runtime/`, fetch limits, and manual checks. The default public checkout still shows `aruni-uddalaka` as `link_only` until private mode or the separately approved overlay is installed. On-demand behavior has not been executed or tested. A source-index extraction fix on the same branch now recognizes ordered lists outside WordPress article containers and nested unordered lists inside main/article, retains the original 59-story index, and omits unrelated Parva links from chapter navigation; pull latest and restart.
 
 ## Next work
 

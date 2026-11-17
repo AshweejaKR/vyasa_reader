@@ -54,7 +54,7 @@ def fetch_html(url):
 
 
 class SourcePage(HTMLParser):
-    """Only capture WordPress post paragraphs and ordered-list links."""
+    """Capture post text and index links while excluding site navigation."""
 
     def __init__(self):
         super().__init__(convert_charrefs=True)
@@ -76,16 +76,23 @@ class SourcePage(HTMLParser):
         if (self.body_depth is None and tag in ("div", "section", "article")
                 and ("entry-content" in classes or "post-content" in classes)):
             self.body_depth = len(self.tags)
+        outside_nav = not any(t in self.tags for t in ("nav", "header", "footer", "aside"))
+        in_list = "li" in self.tags and ("ol" in self.tags or "ul" in self.tags)
+        in_article = "main" in self.tags or "article" in self.tags or self.body_depth is not None
+        if tag == "a" and outside_nav and (("ol" in self.tags and "li" in self.tags)
+                                            or (in_article and in_list)):
+            self.anchor = ((dict(attrs).get("href") or ""), [])
         if self.body_depth is None or self.stopped:
             return
         if tag == "p" and self.paragraph is None:
             self.paragraph = []
-        if tag == "a" and "ol" in self.tags and "li" in self.tags:
-            self.anchor = ((dict(attrs).get("href") or ""), [])
 
     def handle_data(self, data):
-        if (self.body_depth is None or self.stopped
-                or any(x in self.tags for x in ("script", "style", "noscript"))):
+        if any(t in self.tags for t in ("script", "style", "noscript")):
+            return
+        if self.anchor is not None:
+            self.anchor[1].append(data)
+        if self.body_depth is None or self.stopped:
             return
         if data.strip().casefold().startswith("the other stories"):
             self.stopped = True
@@ -93,8 +100,6 @@ class SourcePage(HTMLParser):
             return
         if self.paragraph is not None:
             self.paragraph.append(data)
-        if self.anchor is not None:
-            self.anchor[1].append(data)
 
     def handle_endtag(self, tag):
         if tag == "a" and self.anchor is not None:
